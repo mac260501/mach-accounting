@@ -582,7 +582,7 @@
       </p>
       <div class="cta-group">
         <a href="tel:+19055107002" class="btn-primary">📞 Call Us Now</a>
-        <a href="mailto:admin@machaccounting.com" class="btn-secondary">Email Us Directly →</a>
+        <a href="/cdn-cgi/l/email-protection#85e4e1e8ecebc5e8e4e6ede4e6e6eaf0ebf1ecebe2abe6eae8" class="btn-secondary">Email Us Directly →</a>
       </div>
       <div class="trust-row">
         <div class="trust-item">
@@ -610,6 +610,7 @@
       <p class="form-sub">We'll respond within 24 hours — usually same day.</p>
       <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="93dbce6f-efaf-41b6-a759-5af2f2f8d7de">
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
         <input type="hidden" name="subject" value="New CRA Audit Enquiry — MACH">
         <input type="hidden" name="redirect" value="false">
         <div class="form-group">
@@ -748,10 +749,10 @@
       <div class="contact-card-label">Call Directly</div>
       <div class="contact-card-value">(905) 510-7002</div>
     </a>
-    <a href="mailto:admin@machaccounting.com" class="contact-card">
+    <a href="/cdn-cgi/l/email-protection#f190959c989fb19c9092999092929e849f85989f96df929e9c" class="contact-card">
       <div class="contact-card-icon">✉️</div>
       <div class="contact-card-label">Email Us</div>
-      <div class="contact-card-value">admin@machaccounting.com</div>
+      <div class="contact-card-value"><span class="__cf_email__" data-cfemail="ee8f8a838780ae838f8d868f8d8d819b809a878089c08d8183">[email&#160;protected]</span></div>
     </a>
     <a href="https://calendly.com/machaccounting" target="_blank" class="contact-card">
       <div class="contact-card-icon">📅</div>
@@ -766,7 +767,7 @@
 <footer>
   <div class="logo">MACH <span>Audit Defence</span></div>
   <p>Serving clients across British Columbia, Ontario & all of Canada.</p>
-  <p><a href="mailto:admin@machaccounting.com">admin@machaccounting.com</a> &nbsp;|&nbsp; <a href="tel:+19055107002">(905) 510-7002</a></p>
+  <p><a href="/cdn-cgi/l/email-protection#bfdedbd2d6d1ffd2dedcd7dedcdcd0cad1cbd6d1d891dcd0d2"><span class="__cf_email__" data-cfemail="bfdedbd2d6d1ffd2dedcd7dedcdcd0cad1cbd6d1d891dcd0d2">[email&#160;protected]</span></a> &nbsp;|&nbsp; <a href="tel:+19055107002">(905) 510-7002</a></p>
 </footer>
 
 <!-- STICKY CTA -->
@@ -774,7 +775,7 @@
   📋 Free Consultation
 </a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Web3Forms AJAX submission with success state
   const form = document.getElementById('contactForm');
   const successDiv = document.getElementById('formSuccess');
@@ -786,20 +787,4 @@
     btn.disabled = true;
 
     const data = new FormData(form);
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: data
-    });
-    const json = await res.json();
-
-    if (json.success) {
-      form.style.display = 'none';
-      successDiv.style.display = 'block';
-    } else {
-      btn.textContent = 'Request Free Consultation →';
-      btn.disabled = false;
-      alert('Something went wrong. Please call us directly or try again.');
-    }
-  });
-
-  // Hide sticky
+    cons
