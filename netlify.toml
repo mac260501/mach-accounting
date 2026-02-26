@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "https://estate.machaccounting.com/*"
+  to = "/estate.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://foreign.machaccounting.com/*"
+  to = "/foreign.html"
+  status = 200
+  force = true
