@@ -679,7 +679,7 @@ footer a:hover { color: var(--blue-bright); }
 
 <!-- TOP BAR -->
 <div class="topbar">
-  Did you move to Canada with assets abroad? You may have obligations you don't know about. <a href="tel:+12505551234">Talk to a specialist — free.</a>
+  Did you move to Canada with assets abroad? You may have obligations you don't know about. <a href="tel:+19055107002">Talk to a specialist — free.</a>
 </div>
 
 <!-- NAV -->
@@ -688,7 +688,7 @@ footer a:hover { color: var(--blue-bright); }
   <div class="nav-links">
     <a href="#who" class="nav-link">Who We Help</a>
     <a href="#services" class="nav-link">Services</a>
-    <a href="tel:+12505551234" class="nav-cta">Free Consultation</a>
+    <a href="tel:+19055107002" class="nav-cta">Free Consultation</a>
   </div>
 </nav>
 
@@ -708,8 +708,8 @@ footer a:hover { color: var(--blue-bright); }
       Moving to Canada doesn't erase your financial history. Foreign bank accounts, property, pensions, and investments must be reported — often from day one. <strong>We help newcomers, immigrants, and international investors stay fully compliant without paying a dollar more than they owe.</strong>
     </p>
     <div class="hero-actions">
-      <a href="tel:+12505551234" class="btn-blue">📞 Free Consultation</a>
-      <a href="mailto:info@machaccounting.com" class="btn-outline">Send us a message →</a>
+      <a href="tel:+19055107002" class="btn-blue">📞 Free Consultation</a>
+      <a href="mailto:admin@machaccounting.com" class="btn-outline">Send us a message →</a>
     </div>
     <div class="countries">
       <span class="countries-label">We work with clients from</span>
@@ -731,7 +731,7 @@ footer a:hover { color: var(--blue-bright); }
       <h3>Get a Free Tax Assessment</h3>
       <p class="fsub">Tell us your situation. We'll tell you exactly where you stand.</p>
       <form id="crossBorderForm" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+        <input type="hidden" name="access_key" value="93dbce6f-efaf-41b6-a759-5af2f2f8d7de">
         <input type="hidden" name="subject" value="New Cross-Border Tax Enquiry — MACH">
         <input type="hidden" name="redirect" value="false">
         <div class="fg">
@@ -771,7 +771,7 @@ footer a:hover { color: var(--blue-bright); }
       <p>Canada taxes residents on their <strong>worldwide income</strong> — not just what you earn here. From the moment you become a Canadian tax resident, the clock starts on your foreign reporting obligations.</p>
       <p>This isn't about intent. <strong>The CRA doesn't distinguish between not knowing and not filing.</strong> Penalties are the same either way — and they compound fast.</p>
       <p>We've helped clients from dozens of countries understand their obligations, get caught up without penalty, and build a tax structure that works across borders.</p>
-      <a href="tel:+12505551234" class="btn-blue" style="margin-top:16px; display:inline-block;">Talk to a Specialist Free</a>
+      <a href="tel:+19055107002" class="btn-blue" style="margin-top:16px; display:inline-block;">Talk to a Specialist Free</a>
     </div>
     <div>
       <div class="stag" style="margin-bottom:20px;">What People Get Wrong</div>
@@ -950,15 +950,15 @@ footer a:hover { color: var(--blue-bright); }
   <h2>Don't Let the CRA Find You <span>Before You Find Us.</span></h2>
   <p>A free, confidential consultation. We'll tell you exactly what you need to file, what you may have missed, and how to fix it — no judgment, no pressure.</p>
   <div class="contact-cards">
-    <a href="tel:+12505551234" class="cc">
+    <a href="tel:+19055107002" class="cc">
       <div class="cc-icon">📞</div>
       <div class="cc-label">Call Directly</div>
-      <div class="cc-val">(250) 555-1234</div>
+      <div class="cc-val">(905) 510-7002</div>
     </a>
-    <a href="mailto:info@machaccounting.com" class="cc">
+    <a href="mailto:admin@machaccounting.com" class="cc">
       <div class="cc-icon">✉️</div>
       <div class="cc-label">Email Us</div>
-      <div class="cc-val">info@machaccounting.com</div>
+      <div class="cc-val">admin@machaccounting.com</div>
     </a>
     <a href="https://calendly.com/machaccounting" target="_blank" class="cc">
       <div class="cc-icon">📅</div>
@@ -973,7 +973,7 @@ footer a:hover { color: var(--blue-bright); }
 <footer>
   <div class="logo">MACH <span style="color:var(--blue-bright)">Cross-Border Tax</span></div>
   <p>Serving British Columbia, Ontario &amp; all of Canada</p>
-  <p><a href="mailto:info@machaccounting.com">info@machaccounting.com</a> &nbsp;|&nbsp; <a href="tel:+12505551234">(250) 555-1234</a></p>
+  <p><a href="mailto:admin@machaccounting.com">admin@machaccounting.com</a> &nbsp;|&nbsp; <a href="tel:+19055107002">(905) 510-7002</a></p>
 </footer>
 
 <!-- STICKY -->
@@ -981,7 +981,7 @@ footer a:hover { color: var(--blue-bright); }
   🌐 Free Tax Assessment
 </a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const form = document.getElementById('crossBorderForm');
   const successDiv = document.getElementById('cbSuccess');
   form.addEventListener('submit', async function(e) {
@@ -997,18 +997,8 @@ footer a:hover { color: var(--blue-bright); }
     } else {
       btn.textContent = 'Get My Free Assessment →';
       btn.disabled = false;
-      alert('Something went wrong. Please call or email us directly.');
+      alert('Something went wrong. Please call us directly or try again.');
     }
   });
 
-  const formCard = document.querySelector('.form-card');
-  const sticky = document.getElementById('stickyBtn');
-  const obs = new IntersectionObserver(entries => {
-    sticky.style.opacity = entries[0].isIntersecting ? '0' : '1';
-    sticky.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'auto';
-  }, { threshold: 0.4 });
-  obs.observe(formCard);
-</script>
-
-</body>
-</html>
+  // Hide sticky
