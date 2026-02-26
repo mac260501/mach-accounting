@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cross-Border & Foreign Asset Tax Specialists | MACH</title>
+<title>Estate Planning & Trust Accounting | MACH</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17873651816">
@@ -22,870 +22,688 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --dark: #0e0f13;
-  --dark-mid: #16181f;
-  --dark-card: #1c1f28;
-  --blue: #3b82f6;
-  --blue-bright: #60a5fa;
-  --blue-dim: rgba(59,130,246,0.12);
-  --white: #f0f2f7;
-  --muted: #6b7280;
-  --muted-light: #9ca3af;
-  --border: rgba(255,255,255,0.07);
+  --cream: #f5f0e8;
+  --cream-dark: #ede7d9;
+  --green: #1f3d2e;
+  --green-mid: #2c5440;
+  --green-light: #3a6b52;
+  --gold: #b8965a;
+  --gold-light: #d4b07a;
+  --ink: #1a1a18;
+  --muted: #7a7060;
+  --white: #fdfaf5;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--dark);
-  color: var(--white);
-  font-family: 'Barlow', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
   font-weight: 300;
   line-height: 1.7;
   overflow-x: hidden;
 }
 
-/* ── GRID BACKGROUND ── */
+/* ── NOISE TEXTURE OVERLAY ── */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
+  opacity: 0.5;
 }
 
 /* ── TOP BAR ── */
 .topbar {
-  background: var(--blue);
+  background: var(--green);
+  color: var(--cream);
   text-align: center;
-  padding: 9px 20px;
-  font-size: 0.82rem;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   font-weight: 400;
-  letter-spacing: 0.03em;
-  position: relative;
-  z-index: 10;
 }
-.topbar a { color: #fff; font-weight: 500; text-decoration: underline; }
+.topbar a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(212,176,122,0.4); }
 
 /* ── NAV ── */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 72px;
-  border-bottom: 1px solid var(--border);
+  padding: 24px 72px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--cream-dark);
   position: sticky;
   top: 0;
-  background: rgba(14,15,19,0.95);
-  backdrop-filter: blur(16px);
   z-index: 100;
 }
 .logo {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: 0.02em;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: 0.06em;
 }
-.logo span { color: var(--blue-bright); }
-.nav-links { display: flex; gap: 36px; align-items: center; }
-.nav-link { font-size: 0.85rem; color: var(--muted-light); text-decoration: none; transition: color 0.2s; }
-.nav-link:hover { color: var(--white); }
+.logo span { color: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 32px; }
+.nav-link { font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-link:hover { color: var(--green); }
 .nav-cta {
-  background: var(--blue);
-  color: #fff;
+  background: var(--green);
+  color: var(--cream);
   padding: 10px 24px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
   transition: background 0.2s;
 }
-.nav-cta:hover { background: #2563eb; }
+.nav-cta:hover { background: var(--green-mid); }
 
 /* ── HERO ── */
 .hero {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 0;
+  min-height: 88vh;
   position: relative;
   z-index: 1;
-  padding: 56px 72px 64px;
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 72px;
-  align-items: start;
 }
-
-/* Glowing orb */
-.hero::before {
+.hero-left {
+  padding: 80px 72px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--cream);
+  position: relative;
+}
+.hero-left::after {
   content: '';
   position: absolute;
-  top: -100px;
-  left: 30%;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: 0;
+  top: 60px; bottom: 60px;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  opacity: 0.4;
 }
-
-.hero-content { position: relative; z-index: 1; }
-
-.hero-flag {
-  display: inline-flex;
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  display: flex;
   align-items: center;
-  gap: 10px;
-  background: var(--blue-dim);
-  border: 1px solid rgba(59,130,246,0.25);
-  border-radius: 100px;
-  padding: 6px 16px 6px 8px;
-  font-size: 0.78rem;
-  color: var(--blue-bright);
-  margin-bottom: 20px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  gap: 12px;
 }
-.hero-flag-dot {
-  width: 8px; height: 8px;
-  background: var(--blue);
-  border-radius: 50%;
-  animation: blink 2s ease-in-out infinite;
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
 }
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-.hero h1 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(2.6rem, 4.5vw, 4rem);
+.hero-left h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 4.5vw, 4.8rem);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.05;
+  color: var(--green);
   margin-bottom: 28px;
-  letter-spacing: 0.01em;
 }
-.hero h1 .line-muted { color: var(--muted); }
-.hero h1 .line-blue { color: var(--blue-bright); }
-
-.hero-sub {
+.hero-left h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-desc {
   font-size: 1.05rem;
-  color: var(--muted-light);
-  max-width: 520px;
+  color: var(--muted);
+  max-width: 500px;
   margin-bottom: 44px;
   line-height: 1.8;
 }
-.hero-sub strong { color: var(--white); font-weight: 500; }
-
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 52px; }
-.btn-blue {
-  background: var(--blue);
-  color: #fff;
-  padding: 14px 32px;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 500;
+.hero-desc strong { color: var(--ink); font-weight: 500; }
+.cta-pair { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.btn-green {
+  background: var(--green);
+  color: var(--cream);
+  padding: 15px 36px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
   transition: background 0.2s, transform 0.15s;
   display: inline-block;
 }
-.btn-blue:hover { background: #2563eb; transform: translateY(-1px); }
-.btn-outline {
-  color: var(--muted-light);
-  font-size: 0.95rem;
+.btn-green:hover { background: var(--green-mid); transform: translateY(-1px); }
+.btn-ghost {
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
   text-decoration: none;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--muted);
+  padding-bottom: 2px;
   transition: color 0.2s, border-color 0.2s;
 }
-.btn-outline:hover { color: var(--white); border-color: var(--muted-light); }
+.btn-ghost:hover { color: var(--green); border-color: var(--green); }
 
-.countries {
+.trust-pills {
+  margin-top: 52px;
   display: flex;
-  align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
-.countries-label {
+.pill {
+  background: var(--cream-dark);
+  color: var(--muted);
   font-size: 0.75rem;
-  color: var(--muted);
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
 }
-.country-chips { display: flex; gap: 8px; flex-wrap: wrap; }
-.chip {
-  background: var(--dark-card);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 4px 12px;
-  font-size: 0.78rem;
-  color: var(--muted-light);
-}
+.pill strong { color: var(--ink); font-weight: 500; }
 
-/* ── HERO FORM ── */
-.hero-form-wrap {
-  position: sticky;
-  top: 90px;
-  z-index: 1;
-}
-.form-card {
-  background: var(--dark-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 36px 32px;
+/* ── HERO RIGHT — FORM ── */
+.hero-right {
+  background: var(--green);
+  padding: 60px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
-  overflow: hidden;
 }
-.form-card::before {
-  content: '';
+.hero-right::before {
+  content: '"';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18rem;
+  color: rgba(255,255,255,0.03);
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--blue), #818cf8, var(--blue));
-  background-size: 200%;
-  animation: shimmer 3s linear infinite;
+  top: -40px;
+  left: 20px;
+  line-height: 1;
+  pointer-events: none;
 }
-@keyframes shimmer {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 200% 0%; }
-}
-.form-card h3 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
+.form-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--cream);
   margin-bottom: 6px;
-  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
-.form-card .fsub {
+.form-sub {
   font-size: 0.82rem;
-  color: var(--muted);
-  margin-bottom: 28px;
+  color: rgba(245,240,232,0.55);
+  margin-bottom: 32px;
+  letter-spacing: 0.04em;
 }
-.fg { margin-bottom: 14px; }
-.fg label {
+.fgroup {
+  margin-bottom: 16px;
+}
+.fgroup label {
   display: block;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(245,240,232,0.5);
   margin-bottom: 7px;
 }
-.fg input, .fg textarea {
+.fgroup input,
+.fgroup textarea {
   width: 100%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 11px 14px;
-  color: var(--white);
-  font-family: 'Barlow', sans-serif;
-  font-size: 0.93rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(245,240,232,0.15);
+  padding: 12px 16px;
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
   font-weight: 300;
   outline: none;
   transition: border-color 0.2s, background 0.2s;
+  border-radius: 2px;
 }
-.fg input::placeholder, .fg textarea::placeholder { color: var(--muted); }
-.fg input:focus, .fg textarea:focus {
-  border-color: var(--blue);
-  background: rgba(59,130,246,0.06);
+.fgroup input::placeholder,
+.fgroup textarea::placeholder { color: rgba(245,240,232,0.3); }
+.fgroup input:focus,
+.fgroup textarea:focus {
+  border-color: var(--gold);
+  background: rgba(255,255,255,0.09);
 }
-.fg textarea { resize: vertical; min-height: 76px; }
-.f-submit {
+.fgroup textarea { resize: vertical; min-height: 80px; }
+.form-btn {
   width: 100%;
-  background: var(--blue);
-  color: #fff;
+  background: var(--gold);
+  color: var(--green);
   border: none;
-  border-radius: 6px;
-  padding: 13px;
-  font-family: 'Barlow', sans-serif;
-  font-size: 0.95rem;
+  padding: 15px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
   font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
   transition: background 0.2s;
   margin-top: 4px;
 }
-.f-submit:hover { background: #2563eb; }
-.f-note { font-size: 0.73rem; color: var(--muted); text-align: center; margin-top: 10px; }
-.f-success {
+.form-btn:hover { background: var(--gold-light); }
+.form-privacy {
+  font-size: 0.72rem;
+  color: rgba(245,240,232,0.35);
+  text-align: center;
+  margin-top: 12px;
+  letter-spacing: 0.04em;
+}
+.form-success-est {
   display: none;
   text-align: center;
-  padding: 24px 0;
+  color: var(--cream);
+  padding: 32px 0;
 }
-.f-success .big { font-size: 2.5rem; margin-bottom: 12px; }
-.f-success strong { font-size: 1rem; color: var(--white); }
-.f-success p { font-size: 0.85rem; color: var(--muted-light); margin-top: 6px; }
+.form-success-est .big-check { font-size: 3rem; margin-bottom: 16px; }
+.form-success-est p { color: rgba(245,240,232,0.65); font-size: 0.9rem; }
 
-/* ── REALITY CHECK ── */
-.reality {
+/* ── DIVIDER ── */
+.ornament-divider {
+  text-align: center;
+  padding: 48px 0 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  letter-spacing: 0.3em;
   position: relative;
   z-index: 1;
-  background: var(--dark-mid);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+}
+.ornament-divider::before, .ornament-divider::after {
+  content: '';
+  display: inline-block;
+  width: 80px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+  vertical-align: middle;
+  margin: 0 20px;
+}
+
+/* ── WHY NOW ── */
+.why-now {
   padding: 80px 72px;
-}
-.reality-inner {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
+  position: relative;
+  z-index: 1;
 }
-.stag {
+.why-now .section-tag {
   font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--blue-bright);
+  color: var(--gold);
   margin-bottom: 16px;
 }
-.reality h2 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+.why-now h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 700;
+  color: var(--green);
+  max-width: 680px;
   line-height: 1.2;
   margin-bottom: 20px;
-  letter-spacing: -0.02em;
 }
-.reality p { color: var(--muted-light); margin-bottom: 14px; font-size: 0.95rem; }
-.reality p strong { color: var(--white); font-weight: 500; }
-
-.mistake-list { list-style: none; }
-.mistake-list li {
-  padding: 18px 0;
-  border-bottom: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 16px;
-  align-items: start;
-}
-.mistake-list li:last-child { border-bottom: none; }
-.m-icon {
-  width: 32px; height: 32px;
-  background: rgba(239,68,68,0.1);
-  border: 1px solid rgba(239,68,68,0.2);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-.m-text h4 { font-size: 0.9rem; font-weight: 500; color: var(--white); margin-bottom: 3px; }
-.m-text p { font-size: 0.82rem; color: var(--muted-light); margin: 0; line-height: 1.6; }
-
-/* ── WHO WE SERVE ── */
-.who {
-  position: relative;
-  z-index: 1;
-  padding: 96px 72px;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-.who .stag { margin-bottom: 16px; }
-.who h2 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
-  font-weight: 700;
+.why-now h2 em { font-style: italic; }
+.why-now .lead {
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 620px;
   margin-bottom: 52px;
-  letter-spacing: -0.02em;
-  max-width: 560px;
-  line-height: 1.2;
 }
-.personas {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.persona-card {
-  background: var(--dark-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 32px 28px;
-  transition: border-color 0.2s, transform 0.2s;
-  position: relative;
-  overflow: hidden;
-}
-.persona-card:hover { border-color: rgba(59,130,246,0.35); transform: translateY(-3px); }
-.persona-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--blue), transparent);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.persona-card:hover::after { opacity: 1; }
-.persona-emoji { font-size: 2rem; margin-bottom: 16px; }
-.persona-card h3 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  letter-spacing: -0.01em;
-}
-.persona-card p { font-size: 0.85rem; color: var(--muted-light); line-height: 1.7; }
-.persona-tags {
-  margin-top: 16px;
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.ptag {
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--blue-bright);
-  background: var(--blue-dim);
-  border-radius: 4px;
-  padding: 3px 9px;
-}
-
-/* ── SERVICES ── */
-.services {
-  position: relative;
-  z-index: 1;
-  background: var(--dark-mid);
-  padding: 96px 72px;
-  border-top: 1px solid var(--border);
-}
-.services-inner { max-width: 1280px; margin: 0 auto; }
-.services h2 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
-  font-weight: 700;
-  margin-bottom: 52px;
-  letter-spacing: -0.02em;
-  max-width: 600px;
-  line-height: 1.2;
-}
-.svc-grid {
+.consequence-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: var(--border);
-  border-radius: 10px;
-  overflow: hidden;
+  background: var(--cream-dark);
 }
-.svc-box {
-  background: var(--dark-card);
-  padding: 36px 30px;
+.con-card {
+  background: var(--cream);
+  padding: 36px 32px;
   transition: background 0.2s;
 }
-.svc-box:hover { background: #20232e; }
-.svc-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.7rem;
+.con-card:hover { background: var(--white); }
+.con-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--blue);
-  margin-bottom: 16px;
+  color: var(--cream-dark);
+  line-height: 1;
+  margin-bottom: 14px;
 }
-.svc-box h3 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
+.con-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--green);
   margin-bottom: 10px;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
 }
-.svc-box p { font-size: 0.85rem; color: var(--muted-light); line-height: 1.75; }
+.con-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+/* ── SERVICES ── */
+.services {
+  background: var(--green);
+  padding: 96px 72px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.services::before {
+  content: 'ESTATE';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.02);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+}
+.services-inner { max-width: 1200px; margin: 0 auto; }
+.services .section-tag { color: var(--gold); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 16px; }
+.services h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 52px;
+  max-width: 560px;
+  line-height: 1.2;
+}
+.svc-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
+.svc-item {
+  background: var(--green);
+  padding: 40px 36px;
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+}
+.svc-item:hover { border-left-color: var(--gold); background: var(--green-mid); }
+.svc-item h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.svc-item p { font-size: 0.88rem; color: rgba(245,240,232,0.55); line-height: 1.75; }
+.svc-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(184,150,90,0.3);
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
 
 /* ── PROCESS ── */
 .process {
-  position: relative;
-  z-index: 1;
   padding: 96px 72px;
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
+.process .section-tag { color: var(--gold); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 16px; }
 .process h2 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
   font-weight: 700;
+  color: var(--green);
   margin-bottom: 60px;
-  letter-spacing: -0.02em;
 }
-.psteps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  position: relative;
-}
-.psteps::before {
-  content: '';
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
+.step-item { position: relative; }
+.step-item:not(:last-child)::after {
+  content: '→';
   position: absolute;
-  top: 20px;
-  left: 5%;
-  right: 5%;
-  height: 1px;
-  background: linear-gradient(to right, var(--blue), transparent 80%);
-  opacity: 0.3;
+  top: 8px;
+  right: -28px;
+  color: var(--gold);
+  opacity: 0.4;
+  font-size: 1.2rem;
 }
-.pstep { padding: 0 24px 0 0; }
-.pstep-n {
-  width: 40px; height: 40px;
-  border: 1px solid var(--blue);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.8rem;
+.step-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
   font-weight: 700;
-  color: var(--blue-bright);
-  margin-bottom: 20px;
-  background: var(--dark);
-  position: relative;
-  z-index: 1;
+  color: var(--cream-dark);
+  line-height: 1;
+  margin-bottom: 16px;
 }
-.pstep h4 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 700;
+.step-item h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--green);
   margin-bottom: 8px;
-  letter-spacing: -0.01em;
 }
-.pstep p { font-size: 0.83rem; color: var(--muted-light); line-height: 1.7; }
+.step-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.75; }
 
-/* ── CTA ── */
-.cta-section {
+/* ── FINAL CTA BAND ── */
+.cta-band {
+  background: var(--cream-dark);
+  border-top: 1px solid rgba(184,150,90,0.2);
+  border-bottom: 1px solid rgba(184,150,90,0.2);
+  padding: 80px 72px;
+  text-align: center;
   position: relative;
   z-index: 1;
-  overflow: hidden;
-  background: var(--dark-mid);
-  border-top: 1px solid var(--border);
-  padding: 100px 72px;
-  text-align: center;
 }
-.cta-section::before {
-  content: '';
-  position: absolute;
-  top: -200px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px; height: 500px;
-  background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 65%);
-  pointer-events: none;
-}
-.cta-section h2 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 800;
-  max-width: 700px;
+.cta-band h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--green);
+  max-width: 680px;
   margin: 0 auto 16px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
-.cta-section h2 span { color: var(--blue-bright); }
-.cta-section p { color: var(--muted-light); max-width: 480px; margin: 0 auto 44px; font-size: 0.95rem; }
-.contact-cards {
+.cta-band h2 em { font-style: italic; color: var(--gold); }
+.cta-band p { color: var(--muted); max-width: 480px; margin: 0 auto 44px; font-size: 0.95rem; }
+.contact-trio {
   display: flex;
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 24px;
 }
-.cc {
-  background: var(--dark-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 24px 32px;
+.ctrio-card {
+  background: var(--cream);
+  border: 1px solid rgba(184,150,90,0.25);
+  padding: 28px 36px;
   text-decoration: none;
-  color: var(--white);
+  color: var(--ink);
+  transition: border-color 0.2s, transform 0.15s;
   min-width: 200px;
   text-align: center;
-  transition: border-color 0.2s, transform 0.15s;
 }
-.cc:hover { border-color: var(--blue); transform: translateY(-2px); }
-.cc-icon { font-size: 1.5rem; margin-bottom: 8px; }
-.cc-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
-.cc-val { font-size: 0.95rem; font-weight: 500; color: var(--blue-bright); }
-.cta-micro { font-size: 0.78rem; color: var(--muted); }
+.ctrio-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.ctrio-icon { font-size: 1.5rem; margin-bottom: 8px; }
+.ctrio-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.ctrio-val { font-size: 1rem; font-weight: 500; color: var(--green); }
+.cta-footnote {
+  margin-top: 24px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
 
 /* ── FOOTER ── */
 footer {
-  border-top: 1px solid var(--border);
-  padding: 28px 72px;
+  background: var(--green);
+  color: rgba(245,240,232,0.5);
+  padding: 32px 72px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
   font-size: 0.8rem;
-  color: var(--muted);
   position: relative;
   z-index: 1;
 }
-footer a { color: var(--muted); text-decoration: none; }
-footer a:hover { color: var(--blue-bright); }
+footer .logo { color: var(--cream); }
+footer a { color: rgba(245,240,232,0.5); text-decoration: none; }
+footer a:hover { color: var(--gold-light); }
 
-/* ── STICKY ── */
-.sticky-btn {
+/* ── STICKY CTA ── */
+.sticky-float {
   position: fixed;
   bottom: 28px;
   right: 28px;
-  background: var(--blue);
-  color: #fff;
-  padding: 13px 22px;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 500;
+  background: var(--green);
+  color: var(--cream);
+  padding: 13px 24px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
-  box-shadow: 0 4px 24px rgba(59,130,246,0.35);
+  box-shadow: 0 6px 28px rgba(31,61,46,0.3);
   z-index: 999;
   transition: background 0.2s, opacity 0.3s, transform 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  border-left: 3px solid var(--gold);
 }
-.sticky-btn:hover { background: #2563eb; transform: translateY(-2px); }
+.sticky-float:hover { background: var(--green-mid); transform: translateY(-2px); }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 1100px) {
-  nav { padding: 18px 24px; }
-  .nav-links .nav-link { display: none; }
-  .hero { 
-    grid-template-columns: 1fr; 
-    padding: 48px 24px; 
-    gap: 40px; 
-    max-width: 100%; 
-    margin: 0;
-  }
-  .hero-content { max-width: 100%; width: 100%; }
-  .hero h1 { font-size: clamp(2.6rem, 8vw, 4rem); }
-  .hero-sub { max-width: 100%; }
-  .hero-flag { font-size: 0.72rem; }
-  .hero-form-wrap { position: static; max-width: 100%; width: 100%; }
-  .form-card { border-radius: 8px; }
-  .reality { padding: 64px 24px; }
-  .reality-inner { grid-template-columns: 1fr; gap: 48px; }
-  .who { padding: 64px 24px; }
-  .personas { grid-template-columns: 1fr; }
-  .services { padding: 64px 24px; }
-  .svc-grid { grid-template-columns: 1fr; }
-  .process { padding: 64px 24px; }
-  .psteps { grid-template-columns: 1fr 1fr; row-gap: 48px; }
-  .psteps::before { display: none; }
-  .cta-section { padding: 72px 24px; }
-  footer { padding: 24px; flex-direction: column; text-align: center; }
+@media (max-width: 900px) {
+  nav { padding: 20px 28px; }
+  .nav-right .nav-link { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 60px 28px; }
+  .hero-left::after { display: none; }
+  .hero-right { padding: 52px 28px; }
+  .why-now { padding: 60px 28px; }
+  .consequence-grid { grid-template-columns: 1fr; }
+  .services { padding: 72px 28px; }
+  .svc-list { grid-template-columns: 1fr; }
+  .process { padding: 72px 28px; }
+  .steps { grid-template-columns: 1fr 1fr; row-gap: 48px; }
+  .step-item::after { display: none; }
+  .cta-band { padding: 60px 28px; }
+  footer { padding: 28px; flex-direction: column; text-align: center; }
 }
 
 /* ── ENTRANCE ANIMATIONS ── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.hero-flag { animation: fadeUp 0.45s ease both; }
-.hero h1 { animation: fadeUp 0.55s 0.08s ease both; }
-.hero-sub { animation: fadeUp 0.55s 0.16s ease both; }
-.hero-actions { animation: fadeUp 0.55s 0.24s ease both; }
-.countries { animation: fadeUp 0.55s 0.32s ease both; }
-.form-card { animation: fadeUp 0.55s 0.12s ease both; }
+.eyebrow { animation: fadeUp 0.5s ease both; }
+.hero-left h1 { animation: fadeUp 0.6s 0.1s ease both; }
+.hero-desc { animation: fadeUp 0.6s 0.2s ease both; }
+.cta-pair { animation: fadeUp 0.6s 0.3s ease both; }
+.trust-pills { animation: fadeUp 0.6s 0.4s ease both; }
+.form-heading { animation: fadeUp 0.6s 0.15s ease both; }
 </style>
 </head>
 <body>
 
 <!-- TOP BAR -->
 <div class="topbar">
-  Did you move to Canada with assets abroad? You may have obligations you don't know about. <a href="tel:+19055107002">Talk to a specialist — free.</a>
+  Protecting Canadian families and their legacies since 2004 &nbsp;·&nbsp; <a href="tel:+19055107002">Speak to a specialist today</a>
 </div>
 
 <!-- NAV -->
 <nav>
-  <div class="logo">MACH <span>Cross-Border Tax</span></div>
-  <div class="nav-links">
-    <a href="#who" class="nav-link">Who We Help</a>
+  <div class="logo">MACH <span>Estate & Trust</span></div>
+  <div class="nav-right">
     <a href="#services" class="nav-link">Services</a>
-    <a href="tel:+19055107002" class="nav-cta">Free Consultation</a>
+    <a href="#process" class="nav-link">Our Process</a>
+    <a href="tel:+19055107002" class="nav-cta">Book a Consultation</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-flag">
-      <div class="hero-flag-dot"></div>
-      Cross-Border &amp; Foreign Asset Tax Specialists
-    </div>
-    <h1>
-      <span class="line-muted">You Built Wealth</span><br>
-      <span class="line-muted">Across Borders.</span><br>
-      <span class="line-blue">Canada Has Rules<br>About That.</span>
-    </h1>
-    <p class="hero-sub">
-      Moving to Canada doesn't erase your financial history. Foreign bank accounts, property, pensions, and investments must be reported — often from day one. <strong>We help newcomers, immigrants, and international investors stay fully compliant without paying a dollar more than they owe.</strong>
+  <div class="hero-left">
+    <div class="eyebrow">Estate Planning &amp; Trust Accounting</div>
+    <h1>Your Family Deserves a Plan as <em>Lasting</em> as Your Legacy.</h1>
+    <p class="hero-desc">
+      Most families leave estate planning too late — and it costs them dearly. <strong>We help Canadians structure their estates, establish trusts, and protect what they've built</strong> so their family inherits wealth, not headaches.
     </p>
-    <div class="hero-actions">
-      <a href="tel:+19055107002" class="btn-blue">📞 Free Consultation</a>
-      <a href="/cdn-cgi/l/email-protection#355451585c5b755854565d5456565a405b415c5b521b565a58" class="btn-outline">Send us a message →</a>
+    <div class="cta-pair">
+      <a href="tel:+19055107002" class="btn-green">📞 Free Estate Review</a>
+      <a href="/cdn-cgi/l/email-protection#0a6b6e6763644a676b69626b6969657f647e63646d24696567" class="btn-ghost">Send us a message →</a>
     </div>
-    <div class="countries">
-      <span class="countries-label">We work with clients from</span>
-      <div class="country-chips">
-        <span class="chip">🇮🇳 India</span>
-        <span class="chip">🇨🇳 China</span>
-        <span class="chip">🇵🇰 Pakistan</span>
-        <span class="chip">🇺🇸 USA</span>
-        <span class="chip">🇬🇧 UK</span>
-        <span class="chip">🇵🇭 Philippines</span>
-        <span class="chip">+ many more</span>
-      </div>
+    <div class="trust-pills">
+      <div class="pill">✓ <strong>Free</strong> Initial Consultation</div>
+      <div class="pill">✓ <strong>20+</strong> Years Experience</div>
+      <div class="pill">✓ BC &amp; Ontario</div>
+      <div class="pill">✓ Confidential &amp; Personal</div>
     </div>
   </div>
 
   <!-- FORM -->
-  <div class="hero-form-wrap">
-    <div class="form-card">
-      <h3>Get a Free Tax Assessment</h3>
-      <p class="fsub">Tell us your situation. We'll tell you exactly where you stand.</p>
-      <form id="crossBorderForm" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="93dbce6f-efaf-41b6-a759-5af2f2f8d7de">
+  <div class="hero-right">
+    <div class="form-heading">Start With a Free Estate Review</div>
+    <p class="form-sub">No obligation. No jargon. Just clarity about where you stand.</p>
+    <form id="estateForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="93dbce6f-efaf-41b6-a759-5af2f2f8d7de">
         <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
-        <input type="hidden" name="subject" value="New Cross-Border Tax Enquiry — MACH">
-        <input type="hidden" name="redirect" value="false">
-        <div class="fg">
-          <label for="cbname">Full Name</label>
-          <input type="text" id="cbname" name="name" placeholder="Arjun Mehta" required>
-        </div>
-        <div class="fg">
-          <label for="cbphone">Phone Number</label>
-          <input type="tel" id="cbphone" name="phone" placeholder="(416) 555-0000" required>
-        </div>
-        <div class="fg">
-          <label for="cbemail">Email Address</label>
-          <input type="email" id="cbemail" name="email" placeholder="arjun@example.com" required>
-        </div>
-        <div class="fg">
-          <label for="cbmsg">What's your situation? <span style="opacity:0.4">(optional)</span></label>
-          <textarea id="cbmsg" name="message" placeholder="e.g. I moved from India 2 years ago, I have rental property and a bank account back home, not sure what I need to file..."></textarea>
-        </div>
-        <button type="submit" class="f-submit">Get My Free Assessment →</button>
-        <p class="f-note">🔒 Confidential · No obligation · Response within 24hrs</p>
-      </form>
-      <div class="f-success" id="cbSuccess">
-        <div class="big">✅</div>
-        <strong>You're in good hands.</strong>
-        <p>We'll reach out within 24 hours — usually same day.</p>
+      <input type="hidden" name="subject" value="New Estate Planning Enquiry — MACH">
+      <input type="hidden" name="redirect" value="false">
+      <div class="fgroup">
+        <label for="ename">Full Name</label>
+        <input type="text" id="ename" name="name" placeholder="Margaret Thompson" required>
       </div>
+      <div class="fgroup">
+        <label for="ephone">Phone Number</label>
+        <input type="tel" id="ephone" name="phone" placeholder="(905) 510-7002" required>
+      </div>
+      <div class="fgroup">
+        <label for="eemail">Email Address</label>
+        <input type="email" id="eemail" name="email" placeholder="margaret@example.com" required>
+      </div>
+      <div class="fgroup">
+        <label for="emsg">What's your main concern? <span style="opacity:0.5">(optional)</span></label>
+        <textarea id="emsg" name="message" placeholder="e.g. I want to set up a trust for my children, or I need to probate my spouse's estate..."></textarea>
+      </div>
+      <button type="submit" class="form-btn">Request Free Estate Review</button>
+      <p class="form-privacy">🔒 Your information is strictly confidential</p>
+    </form>
+    <div class="form-success-est" id="estateSuccess">
+      <div class="big-check">✅</div>
+      <strong style="color:var(--cream); font-size:1.1rem;">Thank you — we'll be in touch.</strong>
+      <p>A specialist will contact you within one business day.</p>
     </div>
   </div>
 </section>
 
-<!-- REALITY CHECK -->
-<section class="reality">
-  <div class="reality-inner">
-    <div>
-      <div class="stag">The Reality</div>
-      <h2>Most Newcomers Don't Know What They're Required to Report</h2>
-      <p>Canada taxes residents on their <strong>worldwide income</strong> — not just what you earn here. From the moment you become a Canadian tax resident, the clock starts on your foreign reporting obligations.</p>
-      <p>This isn't about intent. <strong>The CRA doesn't distinguish between not knowing and not filing.</strong> Penalties are the same either way — and they compound fast.</p>
-      <p>We've helped clients from dozens of countries understand their obligations, get caught up without penalty, and build a tax structure that works across borders.</p>
-      <a href="tel:+19055107002" class="btn-blue" style="margin-top:16px; display:inline-block;">Talk to a Specialist Free</a>
-    </div>
-    <div>
-      <div class="stag" style="margin-bottom:20px;">What People Get Wrong</div>
-      <ul class="mistake-list">
-        <li>
-          <div class="m-icon">⚠️</div>
-          <div class="m-text">
-            <h4>"My foreign account isn't taxed here"</h4>
-            <p>Wrong. The T1135 Foreign Income Verification form is required for foreign property over $100K CAD — even if it earns nothing.</p>
-          </div>
-        </li>
-        <li>
-          <div class="m-icon">⚠️</div>
-          <div class="m-text">
-            <h4>"I already paid tax in my home country"</h4>
-            <p>You may still owe Canadian tax. Tax treaties help, but they don't eliminate your filing obligations here.</p>
-          </div>
-        </li>
-        <li>
-          <div class="m-icon">⚠️</div>
-          <div class="m-text">
-            <h4>"My accountant said I only need to report Canadian income"</h4>
-            <p>If your accountant isn't familiar with cross-border rules, this is a costly mistake. Canadian residents report worldwide.</p>
-          </div>
-        </li>
-        <li>
-          <div class="m-icon">⚠️</div>
-          <div class="m-text">
-            <h4>"I'll sort it out later"</h4>
-            <p>Late T1135 penalties start at $25/day up to $2,500 per year — plus up to 5% of the unreported property value for repeated failures.</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
+<div class="ornament-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
 
-<!-- WHO WE SERVE -->
-<section class="who" id="who">
-  <div class="stag">Who We Help</div>
-  <h2>Built for People With Cross-Border Financial Lives</h2>
-  <div class="personas">
-    <div class="persona-card">
-      <div class="persona-emoji">✈️</div>
-      <h3>New Permanent Residents</h3>
-      <p>You just landed in Canada and have assets back home — bank accounts, property, mutual funds, provident funds. We map out exactly what you need to report and when.</p>
-      <div class="persona-tags">
-        <span class="ptag">T1135</span>
-        <span class="ptag">Arrival returns</span>
-        <span class="ptag">Foreign property</span>
-      </div>
+<!-- WHY NOW -->
+<section class="why-now">
+  <div class="section-tag">Why Estate Planning Can't Wait</div>
+  <h2>The Three Things That Happen When There's No Plan</h2>
+  <p class="lead">Estates without proper planning don't just create legal headaches — they erode the wealth you spent a lifetime building and fracture the families you were trying to protect.</p>
+  <div class="consequence-grid">
+    <div class="con-card">
+      <div class="con-num">01</div>
+      <h3>Probate Delays &amp; Costs</h3>
+      <p>Without proper trust structures, estates can be tied up in probate for months or years — with fees eating up to 3% or more of your total estate value before a single dollar reaches your family.</p>
     </div>
-    <div class="persona-card">
-      <div class="persona-emoji">🏘️</div>
-      <h3>Owners of Foreign Property</h3>
-      <p>Rental income from abroad, a family home, or inherited land. All of it must be reported. We handle the filing and make sure you're claiming all treaty credits available to you.</p>
-      <div class="persona-tags">
-        <span class="ptag">Rental income</span>
-        <span class="ptag">Capital gains</span>
-        <span class="ptag">Tax treaties</span>
-      </div>
+    <div class="con-card">
+      <div class="con-num">02</div>
+      <h3>CRA Takes More Than Necessary</h3>
+      <p>Unplanned estates trigger capital gains and income inclusions on death that could have been legally minimized. Poor structure means CRA becomes one of your largest "beneficiaries."</p>
     </div>
-    <div class="persona-card">
-      <div class="persona-emoji">💼</div>
-      <h3>International Business Owners</h3>
-      <p>You own or control a foreign corporation, partnership, or trust. T1134 and T1141 filings are mandatory and complex — we handle them correctly.</p>
-      <div class="persona-tags">
-        <span class="ptag">T1134</span>
-        <span class="ptag">Foreign corps</span>
-        <span class="ptag">FAPI rules</span>
-      </div>
-    </div>
-    <div class="persona-card">
-      <div class="persona-emoji">🏦</div>
-      <h3>Holders of Foreign Pensions &amp; Investments</h3>
-      <p>EPF, CPF, 401k, NHS pension, foreign brokerage accounts — each has unique Canadian tax treatment. We know the rules for the most common home countries.</p>
-      <div class="persona-tags">
-        <span class="ptag">Foreign pensions</span>
-        <span class="ptag">Investment income</span>
-        <span class="ptag">PFIC rules</span>
-      </div>
-    </div>
-    <div class="persona-card">
-      <div class="persona-emoji">🔄</div>
-      <h3>Returning Canadians</h3>
-      <p>Lived abroad for years and now back in Canada? Re-entry requires re-establishing tax residency correctly, declaring cost basis on foreign assets, and unwinding offshore structures.</p>
-      <div class="persona-tags">
-        <span class="ptag">Re-entry planning</span>
-        <span class="ptag">Deemed acquisition</span>
-        <span class="ptag">Step-up in cost base</span>
-      </div>
-    </div>
-    <div class="persona-card">
-      <div class="persona-emoji">📬</div>
-      <h3>Already Behind on Filings?</h3>
-      <p>Haven't filed T1135 for past years? We use the CRA Voluntary Disclosure Program to get you caught up — often eliminating penalties entirely before CRA finds you first.</p>
-      <div class="persona-tags">
-        <span class="ptag">VDP filings</span>
-        <span class="ptag">Penalty relief</span>
-        <span class="ptag">Back filings</span>
-      </div>
+    <div class="con-card">
+      <div class="con-num">03</div>
+      <h3>Family Conflict</h3>
+      <p>Ambiguous wills and poorly structured estates are the single largest driver of family disputes. Clear, professional planning eliminates uncertainty before it becomes irreversible damage.</p>
     </div>
   </div>
 </section>
@@ -893,112 +711,113 @@ footer a:hover { color: var(--blue-bright); }
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="services-inner">
-    <div class="stag">Our Services</div>
-    <h2>Every Cross-Border Tax Situation, Handled With Precision</h2>
-    <div class="svc-grid">
-      <div class="svc-box">
-        <div class="svc-num">01</div>
-        <h3>Foreign Income Reporting (T1135)</h3>
-        <p>Annual foreign asset verification for all specified foreign property over $100K. We prepare and file accurately — avoiding the penalties that catch most newcomers off guard.</p>
+    <div class="section-tag">What We Do</div>
+    <h2>Estate &amp; Trust Services, Done Thoughtfully</h2>
+    <div class="svc-list">
+      <div class="svc-item">
+        <div class="svc-tag">Estate Planning</div>
+        <h3>Estate Tax Planning &amp; Structuring</h3>
+        <p>We analyze your assets and design strategies to minimize the tax liability triggered on death — including capital gains elections, spousal rollovers, charitable gifting, and more.</p>
       </div>
-      <div class="svc-box">
-        <div class="svc-num">02</div>
-        <h3>Newcomer Tax Returns</h3>
-        <p>Your first Canadian tax return is the most complex — arrival date, residency status, foreign income proration, and treaty elections all need to be done right from the start.</p>
+      <div class="svc-item">
+        <div class="svc-tag">Trusts</div>
+        <h3>Trust Establishment &amp; Administration</h3>
+        <p>From family trusts and testamentary trusts to alter ego and Henson trusts — we set them up correctly and manage ongoing compliance so trustees don't face personal liability.</p>
       </div>
-      <div class="svc-box">
-        <div class="svc-num">03</div>
-        <h3>Foreign Corporation Reporting (T1134)</h3>
-        <p>If you own or control a foreign affiliate, annual T1134 filings are mandatory. We handle the disclosure and advise on FAPI and surplus account implications.</p>
+      <div class="svc-item">
+        <div class="svc-tag">Executor Support</div>
+        <h3>Estate Administration &amp; Executor Help</h3>
+        <p>Being named executor is a significant legal responsibility. We prepare estate tax returns (T3s), clear CRA clearance certificates, and guide executors through every step.</p>
       </div>
-      <div class="svc-box">
-        <div class="svc-num">04</div>
-        <h3>Tax Treaty Analysis &amp; Credits</h3>
-        <p>Canada has tax treaties with 90+ countries. We analyze your situation against the relevant treaty to ensure you claim every foreign tax credit available and avoid double taxation.</p>
+      <div class="svc-item">
+        <div class="svc-tag">Ongoing</div>
+        <h3>Annual Trust Accounting &amp; Reporting</h3>
+        <p>Existing trusts require ongoing T3 filings, bookkeeping, and beneficiary reporting. We handle the compliance burden year after year so nothing slips through the cracks.</p>
       </div>
-      <div class="svc-box">
-        <div class="svc-num">05</div>
-        <h3>Voluntary Disclosure (VDP)</h3>
-        <p>If you haven't filed required foreign disclosures in past years, a properly structured VDP application can eliminate penalties and reduce interest — before CRA comes looking.</p>
+      <div class="svc-item">
+        <div class="svc-tag">Business Owners</div>
+        <h3>Succession &amp; Business Transfer Planning</h3>
+        <p>Passing a business to the next generation requires careful use of the Lifetime Capital Gains Exemption, estate freezes, and holding structures. We plan it properly.</p>
       </div>
-      <div class="svc-box">
-        <div class="svc-num">06</div>
-        <h3>Departure &amp; Arrival Planning</h3>
-        <p>Leaving Canada or just arriving? We handle deemed disposition on departure, deemed acquisition on arrival, and all the elections that most accountants miss.</p>
+      <div class="svc-item">
+        <div class="svc-tag">Coordination</div>
+        <h3>Accountant-Lawyer Collaboration</h3>
+        <p>We work alongside your estate lawyer and financial advisor — or can refer you to trusted partners — to ensure your financial and legal documents are perfectly aligned.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROCESS -->
-<section class="process">
-  <div class="stag">How It Works</div>
-  <h2>Simple From Your First Call</h2>
-  <div class="psteps">
-    <div class="pstep">
-      <div class="pstep-n">01</div>
-      <h4>Free Assessment</h4>
-      <p>Tell us where you're from, what you own, and when you arrived. We map out your obligations in plain language — no forms, no charge.</p>
+<section class="process" id="process">
+  <div class="section-tag">Our Process</div>
+  <h2>A Simple, Personal Process</h2>
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-n">01</div>
+      <h4>Free Review</h4>
+      <p>We listen to your situation — assets, family structure, concerns — and give you an honest picture of where you stand and what's at risk.</p>
     </div>
-    <div class="pstep">
-      <div class="pstep-n">02</div>
-      <h4>Custom Filing Plan</h4>
-      <p>We identify every filing you need — current year and any back years — and give you a clear quote with no surprises.</p>
+    <div class="step-item">
+      <div class="step-n">02</div>
+      <h4>Custom Strategy</h4>
+      <p>We design a tax-efficient estate structure tailored to your family, your assets, and your wishes — not a generic template.</p>
     </div>
-    <div class="pstep">
-      <div class="pstep-n">03</div>
-      <h4>We Handle Everything</h4>
-      <p>You provide documents. We handle all the CRA forms, treaty analysis, and cross-border calculations. You review and approve.</p>
+    <div class="step-item">
+      <div class="step-n">03</div>
+      <h4>Implementation</h4>
+      <p>We work with you and your lawyer to put the plan into place — trusts, returns, registrations, and documentation all handled properly.</p>
     </div>
-    <div class="pstep">
-      <div class="pstep-n">04</div>
-      <h4>Ongoing Peace of Mind</h4>
-      <p>We stay on top of your filing obligations year over year so nothing slips — even as your cross-border situation evolves.</p>
+    <div class="step-item">
+      <div class="step-n">04</div>
+      <h4>Ongoing Care</h4>
+      <p>We stay involved — reviewing your plan as your life changes and handling all ongoing trust compliance and reporting requirements.</p>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="cta-section">
-  <h2>Don't Let the CRA Find You <span>Before You Find Us.</span></h2>
-  <p>A free, confidential consultation. We'll tell you exactly what you need to file, what you may have missed, and how to fix it — no judgment, no pressure.</p>
-  <div class="contact-cards">
-    <a href="tel:+19055107002" class="cc">
-      <div class="cc-icon">📞</div>
-      <div class="cc-label">Call Directly</div>
-      <div class="cc-val">(905) 510-7002</div>
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2>The Best Time to Plan Your Estate Was Yesterday. The <em>Second Best</em> Time Is Today.</h2>
+  <p>A free, no-obligation consultation. We'll tell you exactly where you stand and what you should consider — no pressure, no sales pitch.</p>
+  <div class="contact-trio">
+    <a href="tel:+19055107002" class="ctrio-card">
+      <div class="ctrio-icon">📞</div>
+      <div class="ctrio-label">Call Directly</div>
+      <div class="ctrio-val">(905) 510-7002</div>
     </a>
-    <a href="/cdn-cgi/l/email-protection#ef8e8b828681af828e8c878e8c8c809a819b868188c18c8082" class="cc">
-      <div class="cc-icon">✉️</div>
-      <div class="cc-label">Email Us</div>
-      <div class="cc-val"><span class="__cf_email__" data-cfemail="5f3e3b3236311f323e3c373e3c3c302a312b363138713c3032">[email&#160;protected]</span></div>
+    <a href="/cdn-cgi/l/email-protection#9dfcf9f0f4f3ddf0fcfef5fcfefef2e8f3e9f4f3fab3fef2f0" class="ctrio-card">
+      <div class="ctrio-icon">✉️</div>
+      <div class="ctrio-label">Email Us</div>
+      <div class="ctrio-val"><span class="__cf_email__" data-cfemail="a3c2c7cecacde3cec2c0cbc2c0c0ccd6cdd7cacdc48dc0ccce">[email&#160;protected]</span></div>
     </a>
-    <a href="https://calendly.com/machaccounting" target="_blank" class="cc">
-      <div class="cc-icon">📅</div>
-      <div class="cc-label">Book Online</div>
-      <div class="cc-val">Schedule a Call</div>
+    <a href="https://calendly.com/machaccounting" target="_blank" class="ctrio-card">
+      <div class="ctrio-icon">📅</div>
+      <div class="ctrio-label">Book Online</div>
+      <div class="ctrio-val">Schedule a Call</div>
     </a>
   </div>
-  <p class="cta-micro">✓ Free consultation &nbsp;·&nbsp; ✓ No obligation &nbsp;·&nbsp; ✓ Strictly confidential</p>
+  <p class="cta-footnote">✓ Free consultation &nbsp;·&nbsp; ✓ No obligation &nbsp;·&nbsp; ✓ Strictly confidential</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="logo">MACH <span style="color:var(--blue-bright)">Cross-Border Tax</span></div>
+  <div class="logo">MACH <span style="color:var(--gold)">Estate & Trust</span></div>
   <p>Serving British Columbia, Ontario &amp; all of Canada</p>
-  <p><a href="/cdn-cgi/l/email-protection#9cfdf8f1f5f2dcf1fdfff4fdfffff3e9f2e8f5f2fbb2fff3f1"><span class="__cf_email__" data-cfemail="accdc8c1c5c2ecc1cdcfc4cdcfcfc3d9c2d8c5c2cb82cfc3c1">[email&#160;protected]</span></a> &nbsp;|&nbsp; <a href="tel:+19055107002">(905) 510-7002</a></p>
+  <p><a href="/cdn-cgi/l/email-protection#2b4a4f4642456b464a48434a4848445e455f42454c05484446"><span class="__cf_email__" data-cfemail="abcacfc6c2c5ebc6cac8c3cac8c8c4dec5dfc2c5cc85c8c4c6">[email&#160;protected]</span></a> &nbsp;|&nbsp; <a href="tel:+19055107002">(905) 510-7002</a></p>
 </footer>
 
-<!-- STICKY -->
-<a href="#crossBorderForm" class="sticky-btn" id="stickyBtn" onclick="document.getElementById('cbname').focus(); return false;">
-  🌐 Free Tax Assessment
+<!-- STICKY BUTTON -->
+<a href="#estateForm" class="sticky-float" id="stickyBtn" onclick="document.getElementById('ename').focus(); return false;">
+  ✦ Free Estate Review
 </a>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const form = document.getElementById('crossBorderForm');
-  const successDiv = document.getElementById('cbSuccess');
+  // Web3Forms AJAX
+  const form = document.getElementById('estateForm');
+  const successDiv = document.getElementById('estateSuccess');
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    const btn = form.querySelector('.f-submit');
+    const btn = form.querySelector('.form-btn');
     btn.textContent = 'Sending...';
     btn.disabled = true;
