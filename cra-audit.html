@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRA Audit Specialists | MACH Accounting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #152233;
+    --navy-light: #1e3147;
+    --gold: #c9a84c;
+    --gold-light: #e2c47a;
+    --white: #f7f4ef;
+    --gray: #8a9ab0;
+    --red-urgent: #c0392b;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--red-urgent);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    animation: pulse-bar 3s ease-in-out infinite;
+  }
+  @keyframes pulse-bar {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+  }
+  .topbar a { color: #fff; text-decoration: underline; }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 60px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    position: sticky;
+    top: 0;
+    background: rgba(13,27,42,0.97);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .logo span { color: var(--white); }
+  nav .cta-nav {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 10px 24px;
+    border-radius: 2px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  nav .cta-nav:hover { background: var(--gold-light); }
+  .nav-cta-short { display: none; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 100px 60px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    max-width: 780px;
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--gray);
+    max-width: 560px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 500; }
+
+  .cta-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 16px 36px;
+    border-radius: 2px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-secondary {
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .trust-row {
+    margin-top: 52px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .trust-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .trust-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+
+  /* ── DIVIDER ── */
+  .gold-rule {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 60px;
+    opacity: 0.4;
+  }
+
+  /* ── URGENCY SECTION ── */
+  .urgency {
+    background: var(--navy-mid);
+    padding: 64px 60px;
+  }
+  .urgency-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .urgency h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.25;
+  }
+  .urgency p { color: var(--gray); margin-bottom: 16px; }
+  .urgency p strong { color: var(--white); }
+
+  .warning-box {
+    border: 1px solid rgba(192,57,43,0.5);
+    background: rgba(192,57,43,0.08);
+    border-radius: 4px;
+    padding: 28px 32px;
+  }
+  .warning-box h3 {
+    color: #e07070;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+  }
+  .warning-list {
+    list-style: none;
+  }
+  .warning-list li {
+    color: var(--white);
+    font-size: 0.95rem;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .warning-list li:last-child { border-bottom: none; }
+  .warning-list li::before {
+    content: '⚠';
+    color: #e07070;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── HOW WE HELP ── */
+  .how {
+    padding: 80px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .how h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 52px;
+    max-width: 600px;
+    line-height: 1.25;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(201,168,76,0.1);
+  }
+  .service-card {
+    background: var(--navy);
+    padding: 36px 30px;
+    transition: background 0.2s;
+  }
+  .service-card:hover { background: var(--navy-light); }
+  .service-icon {
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    color: var(--gold-light);
+  }
+  .service-card p { color: var(--gray); font-size: 0.9rem; line-height: 1.65; }
+
+  /* ── PROCESS ── */
+  .process {
+    background: var(--navy-mid);
+    padding: 80px 60px;
+  }
+  .process-inner { max-width: 1100px; margin: 0 auto; }
+  .process h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 52px;
+  }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 22px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), var(--gold));
+    opacity: 0.3;
+  }
+  .step { text-align: center; padding: 0 16px; }
+  .step-num {
+    width: 44px; height: 44px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    margin: 0 auto 20px;
+    background: var(--navy-mid);
+    position: relative;
+    z-index: 1;
+  }
+  .step h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 8px; }
+  .step p { color: var(--gray); font-size: 0.85rem; }
+
+  /* ── CTA BLOCK ── */
+  .cta-block {
+    padding: 100px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    max-width: 680px;
+    margin: 0 auto 20px;
+    line-height: 1.15;
+  }
+  .cta-block h2 em { font-style: normal; color: var(--gold); }
+  .cta-block p { color: var(--gray); max-width: 480px; margin: 0 auto 40px; }
+
+  .contact-options {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .contact-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px;
+    padding: 28px 36px;
+    text-decoration: none;
+    color: var(--white);
+    transition: border-color 0.2s, transform 0.15s;
+    min-width: 220px;
+  }
+  .contact-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .contact-card-icon { font-size: 1.6rem; margin-bottom: 10px; }
+  .contact-card-label { font-size: 0.75rem; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .contact-card-value { font-size: 1.1rem; font-weight: 500; color: var(--gold-light); }
+
+  .no-obligation {
+    font-size: 0.8rem;
+    color: var(--gray);
+    letter-spacing: 0.04em;
+  }
+  .no-obligation::before { content: '✓ '; color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  footer .logo { font-size: 0.95rem; }
+  footer p { font-size: 0.8rem; color: var(--gray); }
+  footer a { color: var(--gray); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  /* ── HERO FORM ── */
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    align-items: start;
+  }
+  .hero-form-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 6px;
+    padding: 36px 32px;
+    position: sticky;
+    top: 90px;
+  }
+  .hero-form-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+  }
+  .hero-form-card .form-sub {
+    font-size: 0.82rem;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .form-group {
+    margin-bottom: 14px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 6px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--navy);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 3px;
+    padding: 11px 14px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group select option { background: var(--navy-mid); }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 3px;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 6px;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+  .form-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin-top: 10px;
+  }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+  }
+  .form-success .check { font-size: 2.5rem; margin-bottom: 10px; }
+  .form-success p { color: var(--gray); font-size: 0.9rem; }
+  .form-success strong { color: var(--white); }
+
+  /* ── STICKY BUTTON ── */
+  .sticky-cta {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 22px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(201,168,76,0.35);
+    z-index: 999;
+    transition: background 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sticky-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 18px 24px; }
+    nav .cta-nav { padding: 9px 14px; font-size: 0.8rem; }
+    .nav-cta-full { display: none; }
+    .nav-cta-short { display: inline; }
+    .hero { padding: 60px 24px 60px; }
+    .hero-layout { grid-template-columns: 1fr; gap: 40px; }
+    .hero-form-card { position: static; }
+    .urgency { padding: 52px 24px; }
+    .urgency-inner { grid-template-columns: 1fr; gap: 36px; }
+    .how { padding: 60px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process { padding: 60px 24px; }
+    .process-steps { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+    .process-steps::before { display: none; }
+    .cta-block { padding: 70px 24px; }
+    .gold-rule { margin: 0 24px; }
+    footer { padding: 28px 24px; flex-direction: column; text-align: center; }
+  }
+
+  /* ── ENTRANCE ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-label { animation: fadeUp 0.5s ease both; }
+  .hero h1 { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
+  .cta-group { animation: fadeUp 0.6s 0.3s ease both; }
+  .trust-row { animation: fadeUp 0.6s 0.4s ease both; }
+</style>
+</head>
+<body>
+
+<!-- TOP URGENCY BAR -->
+<div class="topbar">
+  Received a CRA audit letter? Don't wait — <a href="tel:+12505551234">call us today</a>. Every day matters.
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">MACH <span>Audit Defence</span></div>
+  <a href="tel:+12505551234" class="cta-nav">📞 <span class="nav-cta-full">Call Now — Free Consultation</span><span class="nav-cta-short">Call Now</span></a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-layout">
+    <div class="hero-content">
+      <div class="hero-label">CRA Audit Specialists</div>
+      <h1>We Defend Canadians Against <em>CRA Audits.</em> Nothing Else.</h1>
+      <p class="hero-sub">
+        We are not a general accounting firm. We are <strong>dedicated CRA audit professionals</strong> — built specifically to protect individuals and businesses under CRA review, reassessment, or collection action.
+      </p>
+      <div class="cta-group">
+        <a href="tel:+12505551234" class="btn-primary">📞 Call Us Now</a>
+        <a href="/cdn-cgi/l/email-protection#95fcfbf3fad5f8f4f6fdf4f6f6fae0fbe1fcfbf2bbf6faf8" class="btn-secondary">Email Us Directly →</a>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item">
+          <span class="trust-num">Free</span>
+          <span class="trust-label">Initial Consultation</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-num">24hr</span>
+          <span class="trust-label">Response Guarantee</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-num">20+</span>
+          <span class="trust-label">Years of Tax Experience</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-num">BC & ON</span>
+          <span class="trust-label">Serving All of Canada</span>
+        </div>
+      </div>
+    </div><!-- end hero-content -->
+
+    <!-- EMBEDDED CONTACT FORM -->
+    <div class="hero-form-card">
+      <h3>Get a Free Consultation</h3>
+      <p class="form-sub">We'll respond within 24 hours — usually same day.</p>
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+        <input type="hidden" name="subject" value="New CRA Audit Enquiry — MACH">
+        <input type="hidden" name="redirect" value="false">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(416) 555-0000" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Anything else we should know? <span style="color:var(--gray)">(optional)</span></label>
+          <textarea id="message" name="message" placeholder="Brief description of your situation..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Request Free Consultation →</button>
+        <p class="form-note">🔒 Strictly confidential &nbsp;·&nbsp; No obligation</p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="check">✅</div>
+        <p><strong>We've received your message.</strong><br>A specialist will be in touch within 24 hours — usually same day.</p>
+      </div>
+    </div>
+
+  </div><!-- end hero-layout -->
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- URGENCY -->
+<section class="urgency">
+  <div class="urgency-inner">
+    <div>
+      <div class="section-label">Why This Is Serious</div>
+      <h2>A CRA Audit Is Not a Routine Letter. Treat It That Way.</h2>
+      <p>Most people underestimate CRA correspondence — until it becomes a reassessment, a frozen account, or a court date. <strong>Time limits are hard and unforgiving.</strong></p>
+      <p>Anything you say to the CRA before engaging a professional can — and will — be used against you. The CRA's job is to collect. Our job is to protect you.</p>
+      <a href="tel:+12505551234" class="btn-primary" style="margin-top:12px; display:inline-block;">Get Protected Now</a>
+    </div>
+    <div>
+      <div class="warning-box">
+        <h3>What Happens If You Don't Act Immediately</h3>
+        <ul class="warning-list">
+          <li>CRA reassesses and adds penalties — often 10–50% of taxes owed</li>
+          <li>Interest accumulates daily at prescribed rates</li>
+          <li>CRA may freeze bank accounts or garnish wages without notice</li>
+          <li>Voluntary statements you make can expand the scope of the audit</li>
+          <li>Missing CRA deadlines forfeits your right to object</li>
+          <li>Criminal prosecution for serious non-compliance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- HOW WE HELP -->
+<section class="how">
+  <div class="section-label">Our Services</div>
+  <h2>Every Type of CRA Dispute, Handled by Specialists</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <h3>Personal & Business Audits</h3>
+      <p>Full representation through income tax audits — from document preparation to CRA correspondence. We deal with them so you don't have to.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>Notices of Objection</h3>
+      <p>Received a reassessment you disagree with? We file formal objections and build your case before CRA Appeals — within your tight 90-day window.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💼</div>
+      <h3>GST/HST Audits</h3>
+      <p>CRA GST audits are aggressive and fast-moving. We defend input tax credit claims, handle jeopardy assessments, and challenge arbitrary assessments.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛡️</div>
+      <h3>Voluntary Disclosures</h3>
+      <p>Haven't filed in years? Have unreported income or foreign assets? A proper VDP application can eliminate penalties and reduce interest — before CRA finds you first.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚖️</div>
+      <h3>Collections & Debt Relief</h3>
+      <p>Facing CRA collection action, liens, or garnishments? We negotiate payment arrangements and taxpayer relief applications to protect your assets.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📁</div>
+      <h3>Payroll & T4 Disputes</h3>
+      <p>Director liability assessments and payroll audits are among CRA's most aggressive tools. We provide defence before the situation becomes personal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="process-inner">
+    <div class="section-label">How It Works</div>
+    <h2>From First Call to Full Resolution</h2>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Free Consultation</h4>
+        <p>Tell us what you've received. We assess your situation and explain your options — no cost, no obligation.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Immediate Protection</h4>
+        <p>We take over all CRA communication immediately. You stop talking to them. We start.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Strategy & Defence</h4>
+        <p>We build your file, gather documentation, and develop a response strategy tailored to your situation.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Resolution</h4>
+        <p>We negotiate or appeal on your behalf — aiming for the best possible outcome with full transparency throughout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-block">
+  <h2>The CRA Already Has a Team Working Against You. <em>Now You Need One Too.</em></h2>
+  <p>Your consultation is free. There's no obligation. And the sooner we get involved, the more options you have.</p>
+  <div class="contact-options">
+    <a href="tel:+12505551234" class="contact-card">
+      <div class="contact-card-icon">📞</div>
+      <div class="contact-card-label">Call Directly</div>
+      <div class="contact-card-value">(250) 555-1234</div>
+    </a>
+    <a href="/cdn-cgi/l/email-protection#d5bcbbb3ba95b8b4b6bdb4b6b6baa0bba1bcbbb2fbb6bab8" class="contact-card">
+      <div class="contact-card-icon">✉️</div>
+      <div class="contact-card-label">Email Us</div>
+      <div class="contact-card-value"><span class="__cf_email__" data-cfemail="b2dbdcd4ddf2dfd3d1dad3d1d1ddc7dcc6dbdcd59cd1dddf">[email&#160;protected]</span></div>
+    </a>
+    <a href="https://calendly.com/machaccounting" target="_blank" class="contact-card">
+      <div class="contact-card-icon">📅</div>
+      <div class="contact-card-label">Book Online</div>
+      <div class="contact-card-value">Schedule a Call</div>
+    </a>
+  </div>
+  <p class="no-obligation">Free 30-minute consultation &nbsp;·&nbsp; ✓ No obligation &nbsp;·&nbsp; ✓ Strictly confidential</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">MACH <span>Audit Defence</span></div>
+  <p>Serving clients across British Columbia, Ontario & all of Canada.</p>
+  <p><a href="/cdn-cgi/l/email-protection#e68f888089a68b87858e878585899388928f8881c885898b"><span class="__cf_email__" data-cfemail="88e1e6eee7c8e5e9ebe0e9ebebe7fde6fce1e6efa6ebe7e5">[email&#160;protected]</span></a> &nbsp;|&nbsp; <a href="tel:+12505551234">(250) 555-1234</a></p>
+</footer>
+
+<!-- STICKY CTA -->
+<a href="#contactForm" class="sticky-cta" onclick="document.getElementById('name').focus(); return false;">
+  📋 Free Consultation
+</a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Web3Forms AJAX submission with success state
+  const form = document.getElementById('contactForm');
+  const successDiv = document.getElementById('formSuccess');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.form-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const data = new FormData(form);
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data
+    });
+    const json = await res.json();
+
+    if (json.success) {
+      form.style.display = 'none';
+      successDiv.style.display = 'block';
+    } else {
+      btn.textContent = 'Request Free Consultation →';
+      btn.disabled = false;
+      alert('Something went wrong. Please call us directly or try again.');
+    }
+  });
+
+  // Hide sticky

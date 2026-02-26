@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estate Planning & Trust Accounting | MACH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #f5f0e8;
+  --cream-dark: #ede7d9;
+  --green: #1f3d2e;
+  --green-mid: #2c5440;
+  --green-light: #3a6b52;
+  --gold: #b8965a;
+  --gold-light: #d4b07a;
+  --ink: #1a1a18;
+  --muted: #7a7060;
+  --white: #fdfaf5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  background: var(--green);
+  color: var(--cream);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+.topbar a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(212,176,122,0.4); }
+
+/* ── NAV ── */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 72px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--cream-dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: 0.06em;
+}
+.logo span { color: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 32px; }
+.nav-link { font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-link:hover { color: var(--green); }
+.nav-cta {
+  background: var(--green);
+  color: var(--cream);
+  padding: 10px 24px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--green-mid); }
+
+/* ── HERO ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 0;
+  min-height: 88vh;
+  position: relative;
+  z-index: 1;
+}
+.hero-left {
+  padding: 80px 72px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--cream);
+  position: relative;
+}
+.hero-left::after {
+  content: '';
+  position: absolute;
+  top: 60px; bottom: 60px;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  opacity: 0.4;
+}
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+.hero-left h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--green);
+  margin-bottom: 28px;
+}
+.hero-left h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 500px;
+  margin-bottom: 44px;
+  line-height: 1.8;
+}
+.hero-desc strong { color: var(--ink); font-weight: 500; }
+.cta-pair { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.btn-green {
+  background: var(--green);
+  color: var(--cream);
+  padding: 15px 36px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-green:hover { background: var(--green-mid); transform: translateY(-1px); }
+.btn-ghost {
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--muted);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.btn-ghost:hover { color: var(--green); border-color: var(--green); }
+
+.trust-pills {
+  margin-top: 52px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pill {
+  background: var(--cream-dark);
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  padding: 6px 16px;
+  border-radius: 100px;
+}
+.pill strong { color: var(--ink); font-weight: 500; }
+
+/* ── HERO RIGHT — FORM ── */
+.hero-right {
+  background: var(--green);
+  padding: 60px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.hero-right::before {
+  content: '"';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18rem;
+  color: rgba(255,255,255,0.03);
+  position: absolute;
+  top: -40px;
+  left: 20px;
+  line-height: 1;
+  pointer-events: none;
+}
+.form-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.form-sub {
+  font-size: 0.82rem;
+  color: rgba(245,240,232,0.55);
+  margin-bottom: 32px;
+  letter-spacing: 0.04em;
+}
+.fgroup {
+  margin-bottom: 16px;
+}
+.fgroup label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.5);
+  margin-bottom: 7px;
+}
+.fgroup input,
+.fgroup textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(245,240,232,0.15);
+  padding: 12px 16px;
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  border-radius: 2px;
+}
+.fgroup input::placeholder,
+.fgroup textarea::placeholder { color: rgba(245,240,232,0.3); }
+.fgroup input:focus,
+.fgroup textarea:focus {
+  border-color: var(--gold);
+  background: rgba(255,255,255,0.09);
+}
+.fgroup textarea { resize: vertical; min-height: 80px; }
+.form-btn {
+  width: 100%;
+  background: var(--gold);
+  color: var(--green);
+  border: none;
+  padding: 15px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+.form-btn:hover { background: var(--gold-light); }
+.form-privacy {
+  font-size: 0.72rem;
+  color: rgba(245,240,232,0.35);
+  text-align: center;
+  margin-top: 12px;
+  letter-spacing: 0.04em;
+}
+.form-success-est {
+  display: none;
+  text-align: center;
+  color: var(--cream);
+  padding: 32px 0;
+}
+.form-success-est .big-check { font-size: 3rem; margin-bottom: 16px; }
+.form-success-est p { color: rgba(245,240,232,0.65); font-size: 0.9rem; }
+
+/* ── DIVIDER ── */
+.ornament-divider {
+  text-align: center;
+  padding: 48px 0 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  position: relative;
+  z-index: 1;
+}
+.ornament-divider::before, .ornament-divider::after {
+  content: '';
+  display: inline-block;
+  width: 80px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+  vertical-align: middle;
+  margin: 0 20px;
+}
+
+/* ── WHY NOW ── */
+.why-now {
+  padding: 80px 72px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.why-now .section-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.why-now h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  color: var(--green);
+  max-width: 680px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.why-now h2 em { font-style: italic; }
+.why-now .lead {
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 620px;
+  margin-bottom: 52px;
+}
+.consequence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--cream-dark);
+}
+.con-card {
+  background: var(--cream);
+  padding: 36px 32px;
+  transition: background 0.2s;
+}
+.con-card:hover { background: var(--white); }
+.con-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--cream-dark);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.con-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+.con-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+/* ── SERVICES ── */
+.services {
+  background: var(--green);
+  padding: 96px 72px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.services::before {
+  content: 'ESTATE';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.02);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+}
+.services-inner { max-width: 1200px; margin: 0 auto; }
+.services .section-tag { color: var(--gold); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 16px; }
+.services h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 52px;
+  max-width: 560px;
+  line-height: 1.2;
+}
+.svc-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
+.svc-item {
+  background: var(--green);
+  padding: 40px 36px;
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+}
+.svc-item:hover { border-left-color: var(--gold); background: var(--green-mid); }
+.svc-item h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.svc-item p { font-size: 0.88rem; color: rgba(245,240,232,0.55); line-height: 1.75; }
+.svc-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(184,150,90,0.3);
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+
+/* ── PROCESS ── */
+.process {
+  padding: 96px 72px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.process .section-tag { color: var(--gold); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 16px; }
+.process h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 60px;
+}
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
+.step-item { position: relative; }
+.step-item:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  top: 8px;
+  right: -28px;
+  color: var(--gold);
+  opacity: 0.4;
+  font-size: 1.2rem;
+}
+.step-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--cream-dark);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.step-item h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.step-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.75; }
+
+/* ── FINAL CTA BAND ── */
+.cta-band {
+  background: var(--cream-dark);
+  border-top: 1px solid rgba(184,150,90,0.2);
+  border-bottom: 1px solid rgba(184,150,90,0.2);
+  padding: 80px 72px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.cta-band h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--green);
+  max-width: 680px;
+  margin: 0 auto 16px;
+  line-height: 1.2;
+}
+.cta-band h2 em { font-style: italic; color: var(--gold); }
+.cta-band p { color: var(--muted); max-width: 480px; margin: 0 auto 44px; font-size: 0.95rem; }
+.contact-trio {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.ctrio-card {
+  background: var(--cream);
+  border: 1px solid rgba(184,150,90,0.25);
+  padding: 28px 36px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.2s, transform 0.15s;
+  min-width: 200px;
+  text-align: center;
+}
+.ctrio-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.ctrio-icon { font-size: 1.5rem; margin-bottom: 8px; }
+.ctrio-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.ctrio-val { font-size: 1rem; font-weight: 500; color: var(--green); }
+.cta-footnote {
+  margin-top: 24px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--green);
+  color: rgba(245,240,232,0.5);
+  padding: 32px 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+footer .logo { color: var(--cream); }
+footer a { color: rgba(245,240,232,0.5); text-decoration: none; }
+footer a:hover { color: var(--gold-light); }
+
+/* ── STICKY CTA ── */
+.sticky-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: var(--green);
+  color: var(--cream);
+  padding: 13px 24px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 6px 28px rgba(31,61,46,0.3);
+  z-index: 999;
+  transition: background 0.2s, opacity 0.3s, transform 0.2s;
+  border-left: 3px solid var(--gold);
+}
+.sticky-float:hover { background: var(--green-mid); transform: translateY(-2px); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 20px 28px; }
+  .nav-right .nav-link { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 60px 28px; }
+  .hero-left::after { display: none; }
+  .hero-right { padding: 52px 28px; }
+  .why-now { padding: 60px 28px; }
+  .consequence-grid { grid-template-columns: 1fr; }
+  .services { padding: 72px 28px; }
+  .svc-list { grid-template-columns: 1fr; }
+  .process { padding: 72px 28px; }
+  .steps { grid-template-columns: 1fr 1fr; row-gap: 48px; }
+  .step-item::after { display: none; }
+  .cta-band { padding: 60px 28px; }
+  footer { padding: 28px; flex-direction: column; text-align: center; }
+}
+
+/* ── ENTRANCE ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.eyebrow { animation: fadeUp 0.5s ease both; }
+.hero-left h1 { animation: fadeUp 0.6s 0.1s ease both; }
+.hero-desc { animation: fadeUp 0.6s 0.2s ease both; }
+.cta-pair { animation: fadeUp 0.6s 0.3s ease both; }
+.trust-pills { animation: fadeUp 0.6s 0.4s ease both; }
+.form-heading { animation: fadeUp 0.6s 0.15s ease both; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  Protecting Canadian families and their legacies since 2004 &nbsp;·&nbsp; <a href="tel:+12505551234">Speak to a specialist today</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">MACH <span>Estate & Trust</span></div>
+  <div class="nav-right">
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#process" class="nav-link">Our Process</a>
+    <a href="tel:+12505551234" class="nav-cta">Book a Consultation</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">Estate Planning &amp; Trust Accounting</div>
+    <h1>Your Family Deserves a Plan as <em>Lasting</em> as Your Legacy.</h1>
+    <p class="hero-desc">
+      Most families leave estate planning too late — and it costs them dearly. <strong>We help Canadians structure their estates, establish trusts, and protect what they've built</strong> so their family inherits wealth, not headaches.
+    </p>
+    <div class="cta-pair">
+      <a href="tel:+12505551234" class="btn-green">📞 Free Estate Review</a>
+      <a href="mailto:info@machaccounting.com" class="btn-ghost">Send us a message →</a>
+    </div>
+    <div class="trust-pills">
+      <div class="pill">✓ <strong>Free</strong> Initial Consultation</div>
+      <div class="pill">✓ <strong>20+</strong> Years Experience</div>
+      <div class="pill">✓ BC &amp; Ontario</div>
+      <div class="pill">✓ Confidential &amp; Personal</div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="hero-right">
+    <div class="form-heading">Start With a Free Estate Review</div>
+    <p class="form-sub">No obligation. No jargon. Just clarity about where you stand.</p>
+    <form id="estateForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+      <input type="hidden" name="subject" value="New Estate Planning Enquiry — MACH">
+      <input type="hidden" name="redirect" value="false">
+      <div class="fgroup">
+        <label for="ename">Full Name</label>
+        <input type="text" id="ename" name="name" placeholder="Margaret Thompson" required>
+      </div>
+      <div class="fgroup">
+        <label for="ephone">Phone Number</label>
+        <input type="tel" id="ephone" name="phone" placeholder="(250) 555-0000" required>
+      </div>
+      <div class="fgroup">
+        <label for="eemail">Email Address</label>
+        <input type="email" id="eemail" name="email" placeholder="margaret@example.com" required>
+      </div>
+      <div class="fgroup">
+        <label for="emsg">What's your main concern? <span style="opacity:0.5">(optional)</span></label>
+        <textarea id="emsg" name="message" placeholder="e.g. I want to set up a trust for my children, or I need to probate my spouse's estate..."></textarea>
+      </div>
+      <button type="submit" class="form-btn">Request Free Estate Review</button>
+      <p class="form-privacy">🔒 Your information is strictly confidential</p>
+    </form>
+    <div class="form-success-est" id="estateSuccess">
+      <div class="big-check">✅</div>
+      <strong style="color:var(--cream); font-size:1.1rem;">Thank you — we'll be in touch.</strong>
+      <p>A specialist will contact you within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<div class="ornament-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<!-- WHY NOW -->
+<section class="why-now">
+  <div class="section-tag">Why Estate Planning Can't Wait</div>
+  <h2>The Three Things That Happen When There's No Plan</h2>
+  <p class="lead">Estates without proper planning don't just create legal headaches — they erode the wealth you spent a lifetime building and fracture the families you were trying to protect.</p>
+  <div class="consequence-grid">
+    <div class="con-card">
+      <div class="con-num">01</div>
+      <h3>Probate Delays &amp; Costs</h3>
+      <p>Without proper trust structures, estates can be tied up in probate for months or years — with fees eating up to 3% or more of your total estate value before a single dollar reaches your family.</p>
+    </div>
+    <div class="con-card">
+      <div class="con-num">02</div>
+      <h3>CRA Takes More Than Necessary</h3>
+      <p>Unplanned estates trigger capital gains and income inclusions on death that could have been legally minimized. Poor structure means CRA becomes one of your largest "beneficiaries."</p>
+    </div>
+    <div class="con-card">
+      <div class="con-num">03</div>
+      <h3>Family Conflict</h3>
+      <p>Ambiguous wills and poorly structured estates are the single largest driver of family disputes. Clear, professional planning eliminates uncertainty before it becomes irreversible damage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="section-tag">What We Do</div>
+    <h2>Estate &amp; Trust Services, Done Thoughtfully</h2>
+    <div class="svc-list">
+      <div class="svc-item">
+        <div class="svc-tag">Estate Planning</div>
+        <h3>Estate Tax Planning &amp; Structuring</h3>
+        <p>We analyze your assets and design strategies to minimize the tax liability triggered on death — including capital gains elections, spousal rollovers, charitable gifting, and more.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-tag">Trusts</div>
+        <h3>Trust Establishment &amp; Administration</h3>
+        <p>From family trusts and testamentary trusts to alter ego and Henson trusts — we set them up correctly and manage ongoing compliance so trustees don't face personal liability.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-tag">Executor Support</div>
+        <h3>Estate Administration &amp; Executor Help</h3>
+        <p>Being named executor is a significant legal responsibility. We prepare estate tax returns (T3s), clear CRA clearance certificates, and guide executors through every step.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-tag">Ongoing</div>
+        <h3>Annual Trust Accounting &amp; Reporting</h3>
+        <p>Existing trusts require ongoing T3 filings, bookkeeping, and beneficiary reporting. We handle the compliance burden year after year so nothing slips through the cracks.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-tag">Business Owners</div>
+        <h3>Succession &amp; Business Transfer Planning</h3>
+        <p>Passing a business to the next generation requires careful use of the Lifetime Capital Gains Exemption, estate freezes, and holding structures. We plan it properly.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-tag">Coordination</div>
+        <h3>Accountant-Lawyer Collaboration</h3>
+        <p>We work alongside your estate lawyer and financial advisor — or can refer you to trusted partners — to ensure your financial and legal documents are perfectly aligned.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-tag">Our Process</div>
+  <h2>A Simple, Personal Process</h2>
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-n">01</div>
+      <h4>Free Review</h4>
+      <p>We listen to your situation — assets, family structure, concerns — and give you an honest picture of where you stand and what's at risk.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-n">02</div>
+      <h4>Custom Strategy</h4>
+      <p>We design a tax-efficient estate structure tailored to your family, your assets, and your wishes — not a generic template.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-n">03</div>
+      <h4>Implementation</h4>
+      <p>We work with you and your lawyer to put the plan into place — trusts, returns, registrations, and documentation all handled properly.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-n">04</div>
+      <h4>Ongoing Care</h4>
+      <p>We stay involved — reviewing your plan as your life changes and handling all ongoing trust compliance and reporting requirements.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2>The Best Time to Plan Your Estate Was Yesterday. The <em>Second Best</em> Time Is Today.</h2>
+  <p>A free, no-obligation consultation. We'll tell you exactly where you stand and what you should consider — no pressure, no sales pitch.</p>
+  <div class="contact-trio">
+    <a href="tel:+12505551234" class="ctrio-card">
+      <div class="ctrio-icon">📞</div>
+      <div class="ctrio-label">Call Directly</div>
+      <div class="ctrio-val">(250) 555-1234</div>
+    </a>
+    <a href="mailto:info@machaccounting.com" class="ctrio-card">
+      <div class="ctrio-icon">✉️</div>
+      <div class="ctrio-label">Email Us</div>
+      <div class="ctrio-val">info@machaccounting.com</div>
+    </a>
+    <a href="https://calendly.com/machaccounting" target="_blank" class="ctrio-card">
+      <div class="ctrio-icon">📅</div>
+      <div class="ctrio-label">Book Online</div>
+      <div class="ctrio-val">Schedule a Call</div>
+    </a>
+  </div>
+  <p class="cta-footnote">✓ Free consultation &nbsp;·&nbsp; ✓ No obligation &nbsp;·&nbsp; ✓ Strictly confidential</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">MACH <span style="color:var(--gold)">Estate & Trust</span></div>
+  <p>Serving British Columbia, Ontario &amp; all of Canada</p>
+  <p><a href="mailto:info@machaccounting.com">info@machaccounting.com</a> &nbsp;|&nbsp; <a href="tel:+12505551234">(250) 555-1234</a></p>
+</footer>
+
+<!-- STICKY BUTTON -->
+<a href="#estateForm" class="sticky-float" id="stickyBtn" onclick="document.getElementById('ename').focus(); return false;">
+  ✦ Free Estate Review
+</a>
+
+<script>
+  // Web3Forms AJAX
+  const form = document.getElementById('estateForm');
+  const successDiv = document.getElementById('estateSuccess');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.form-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+    const json = await res.json();
+    if (json.success) {
+      form.style.display = 'none';
+      successDiv.style.display = 'block';
+    } else {
+      btn.textContent = 'Request Free Estate Review';
+      btn.disabled = false;
+      alert('Something went wrong. Please call or email us directly.');
+    }
+  });
+
+  // Hide sticky when form visible
+  const heroRight = document.querySelector('.hero-right');
+  const sticky = document.getElementById('stickyBtn');
+  const obs = new IntersectionObserver(entries => {
+    sticky.style.opacity = entries[0].isIntersecting ? '0' : '1';
+    sticky.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'auto';
+  }, { threshold: 0.4 });
+  obs.observe(heroRight);
+</script>
+
+</body>
+</html>
