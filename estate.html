@@ -613,7 +613,7 @@ footer a:hover { color: var(--gold-light); }
 
 <!-- TOP BAR -->
 <div class="topbar">
-  Protecting Canadian families and their legacies since 2004 &nbsp;·&nbsp; <a href="tel:+19055107002">Speak to a specialist today</a>
+  Protecting Canadian families and their legacies since 2004 &nbsp;·&nbsp; <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;">Speak to a specialist today</a>
 </div>
 
 <!-- NAV -->
@@ -622,7 +622,7 @@ footer a:hover { color: var(--gold-light); }
   <div class="nav-right">
     <a href="#services" class="nav-link">Services</a>
     <a href="#process" class="nav-link">Our Process</a>
-    <a href="tel:+19055107002" class="nav-cta">Book a Consultation</a>
+    <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;" class="nav-cta">Book a Consultation</a>
   </div>
 </nav>
 
@@ -635,8 +635,8 @@ footer a:hover { color: var(--gold-light); }
       Most families leave estate planning too late — and it costs them dearly. <strong>We help Canadians structure their estates, establish trusts, and protect what they've built</strong> so their family inherits wealth, not headaches.
     </p>
     <div class="cta-pair">
-      <a href="tel:+19055107002" class="btn-green">📞 Free Estate Review</a>
-      <a href="/cdn-cgi/l/email-protection#0a6b6e6763644a676b69626b6969657f647e63646d24696567" class="btn-ghost">Send us a message →</a>
+      <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;" class="btn-green">📞 Free Estate Review</a>
+      <a href="mailto:admin@machaccounting.com" onclick="gtag_report_conversion(this.href); return false;" class="btn-ghost">Send us a message →</a>
     </div>
     <div class="trust-pills">
       <div class="pill">✓ <strong>Free</strong> Initial Consultation</div>
@@ -781,15 +781,15 @@ footer a:hover { color: var(--gold-light); }
   <h2>The Best Time to Plan Your Estate Was Yesterday. The <em>Second Best</em> Time Is Today.</h2>
   <p>A free, no-obligation consultation. We'll tell you exactly where you stand and what you should consider — no pressure, no sales pitch.</p>
   <div class="contact-trio">
-    <a href="tel:+19055107002" class="ctrio-card">
+    <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;" class="ctrio-card">
       <div class="ctrio-icon">📞</div>
       <div class="ctrio-label">Call Directly</div>
       <div class="ctrio-val">(905) 510-7002</div>
     </a>
-    <a href="/cdn-cgi/l/email-protection#9dfcf9f0f4f3ddf0fcfef5fcfefef2e8f3e9f4f3fab3fef2f0" class="ctrio-card">
+    <a href="mailto:admin@machaccounting.com" onclick="gtag_report_conversion(this.href); return false;" class="ctrio-card">
       <div class="ctrio-icon">✉️</div>
       <div class="ctrio-label">Email Us</div>
-      <div class="ctrio-val"><span class="__cf_email__" data-cfemail="a3c2c7cecacde3cec2c0cbc2c0c0ccd6cdd7cacdc48dc0ccce">[email&#160;protected]</span></div>
+      <div class="ctrio-val">admin@machaccounting.com</div>
     </a>
     <a href="https://calendly.com/machaccounting" target="_blank" class="ctrio-card">
       <div class="ctrio-icon">📅</div>
@@ -804,7 +804,7 @@ footer a:hover { color: var(--gold-light); }
 <footer>
   <div class="logo">MACH <span style="color:var(--gold)">Estate & Trust</span></div>
   <p>Serving British Columbia, Ontario &amp; all of Canada</p>
-  <p><a href="/cdn-cgi/l/email-protection#2b4a4f4642456b464a48434a4848445e455f42454c05484446"><span class="__cf_email__" data-cfemail="abcacfc6c2c5ebc6cac8c3cac8c8c4dec5dfc2c5cc85c8c4c6">[email&#160;protected]</span></a> &nbsp;|&nbsp; <a href="tel:+19055107002">(905) 510-7002</a></p>
+  <p><a href="mailto:admin@machaccounting.com" onclick="gtag_report_conversion(this.href); return false;">admin@machaccounting.com</a> &nbsp;|&nbsp; <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;">(905) 510-7002</a></p>
 </footer>
 
 <!-- STICKY BUTTON -->
@@ -819,5 +819,43 @@ footer a:hover { color: var(--gold-light); }
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = form.querySelector('.form-btn');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+    const json = await res.json();
+    if (json.success) {
+      gtag_report_conversion();
+      form.style.display = 'none';
+      successDiv.style.display = 'block';
+    } else {
+      btn.textContent = 'Request Free Estate Review';
+      btn.disabled = false;
+      alert('Something went wrong. Please call or email us directly.');
+    }
+  });
+
+  // Hide sticky when form visible
+  const heroRight = document.querySelector('.hero-right');
+  const sticky = document.getElementById('stickyBtn');
+  const obs = new IntersectionObserver(entries => {
+    sticky.style.opacity = entries[0].isIntersecting ? '0' : '1';
+    sticky.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'auto';
+  }, { threshold: 0.4 });
+  obs.observe(heroRight);
+</script>
+
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+    'send_to': 'AW-17873651816/rV8RCNPj7f8bEOiQ6cpC',
+    'event_callback': callback
+  });
+  return false;
+}
+</script>
+
+</body>
+</html>

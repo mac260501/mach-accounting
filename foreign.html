@@ -691,7 +691,7 @@ footer a:hover { color: var(--blue-bright); }
 
 <!-- TOP BAR -->
 <div class="topbar">
-  Did you move to Canada with assets abroad? You may have obligations you don't know about. <a href="tel:+19055107002">Talk to a specialist — free.</a>
+  Did you move to Canada with assets abroad? You may have obligations you don't know about. <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;">Talk to a specialist — free.</a>
 </div>
 
 <!-- NAV -->
@@ -700,7 +700,7 @@ footer a:hover { color: var(--blue-bright); }
   <div class="nav-links">
     <a href="#who" class="nav-link">Who We Help</a>
     <a href="#services" class="nav-link">Services</a>
-    <a href="tel:+19055107002" class="nav-cta">Free Consultation</a>
+    <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;" class="nav-cta">Free Consultation</a>
   </div>
 </nav>
 
@@ -720,8 +720,8 @@ footer a:hover { color: var(--blue-bright); }
       Moving to Canada doesn't erase your financial history. Foreign bank accounts, property, pensions, and investments must be reported — often from day one. <strong>We help newcomers, immigrants, and international investors stay fully compliant without paying a dollar more than they owe.</strong>
     </p>
     <div class="hero-actions">
-      <a href="tel:+19055107002" class="btn-blue">📞 Free Consultation</a>
-      <a href="mailto:admin@machaccounting.com" class="btn-outline">Send us a message →</a>
+      <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;" class="btn-blue">📞 Free Consultation</a>
+      <a href="mailto:admin@machaccounting.com" onclick="gtag_report_conversion(this.href); return false;" class="btn-outline">Send us a message →</a>
     </div>
     <div class="countries">
       <span class="countries-label">We work with clients from</span>
@@ -783,7 +783,7 @@ footer a:hover { color: var(--blue-bright); }
       <p>Canada taxes residents on their <strong>worldwide income</strong> — not just what you earn here. From the moment you become a Canadian tax resident, the clock starts on your foreign reporting obligations.</p>
       <p>This isn't about intent. <strong>The CRA doesn't distinguish between not knowing and not filing.</strong> Penalties are the same either way — and they compound fast.</p>
       <p>We've helped clients from dozens of countries understand their obligations, get caught up without penalty, and build a tax structure that works across borders.</p>
-      <a href="tel:+19055107002" class="btn-blue" style="margin-top:16px; display:inline-block;">Talk to a Specialist Free</a>
+      <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;" class="btn-blue" style="margin-top:16px; display:inline-block;">Talk to a Specialist Free</a>
     </div>
     <div>
       <div class="stag" style="margin-bottom:20px;">What People Get Wrong</div>
@@ -962,12 +962,12 @@ footer a:hover { color: var(--blue-bright); }
   <h2>Don't Let the CRA Find You <span>Before You Find Us.</span></h2>
   <p>A free, confidential consultation. We'll tell you exactly what you need to file, what you may have missed, and how to fix it — no judgment, no pressure.</p>
   <div class="contact-cards">
-    <a href="tel:+19055107002" class="cc">
+    <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;" class="cc">
       <div class="cc-icon">📞</div>
       <div class="cc-label">Call Directly</div>
       <div class="cc-val">(905) 510-7002</div>
     </a>
-    <a href="mailto:admin@machaccounting.com" class="cc">
+    <a href="mailto:admin@machaccounting.com" onclick="gtag_report_conversion(this.href); return false;" class="cc">
       <div class="cc-icon">✉️</div>
       <div class="cc-label">Email Us</div>
       <div class="cc-val">admin@machaccounting.com</div>
@@ -985,7 +985,7 @@ footer a:hover { color: var(--blue-bright); }
 <footer>
   <div class="logo">MACH <span style="color:var(--blue-bright)">Cross-Border Tax</span></div>
   <p>Serving British Columbia, Ontario &amp; all of Canada</p>
-  <p><a href="mailto:admin@machaccounting.com">admin@machaccounting.com</a> &nbsp;|&nbsp; <a href="tel:+19055107002">(905) 510-7002</a></p>
+  <p><a href="mailto:admin@machaccounting.com" onclick="gtag_report_conversion(this.href); return false;">admin@machaccounting.com</a> &nbsp;|&nbsp; <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;">(905) 510-7002</a></p>
 </footer>
 
 <!-- STICKY -->
@@ -993,7 +993,7 @@ footer a:hover { color: var(--blue-bright); }
   🌐 Free Tax Assessment
 </a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const form = document.getElementById('crossBorderForm');
   const successDiv = document.getElementById('cbSuccess');
   form.addEventListener('submit', async function(e) {
@@ -1001,16 +1001,42 @@ footer a:hover { color: var(--blue-bright); }
     const btn = form.querySelector('.f-submit');
     btn.textContent = 'Sending...';
     btn.disabled = true;
-    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
     const json = await res.json();
     if (json.success) {
+      gtag_report_conversion();
       form.style.display = 'none';
       successDiv.style.display = 'block';
     } else {
       btn.textContent = 'Get My Free Assessment →';
       btn.disabled = false;
-      alert('Something went wrong. Please call us directly or try again.');
+      alert('Something went wrong. Please call or email us directly.');
     }
   });
 
-  // Hide sticky
+  const formCard = document.querySelector('.form-card');
+  const sticky = document.getElementById('stickyBtn');
+  const obs = new IntersectionObserver(entries => {
+    sticky.style.opacity = entries[0].isIntersecting ? '0' : '1';
+    sticky.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'auto';
+  }, { threshold: 0.4 });
+  obs.observe(formCard);
+</script>
+
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+    'send_to': 'AW-17873651816/rV8RCNPj7f8bEOiQ6cpC',
+    'event_callback': callback
+  });
+  return false;
+}
+</script>
+
+</body>
+</html>

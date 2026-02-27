@@ -562,13 +562,13 @@
 
 <!-- TOP URGENCY BAR -->
 <div class="topbar">
-  Received a CRA audit letter? Don't wait — <a href="tel:+19055107002">call us today</a>. Every day matters.
+  Received a CRA audit letter? Don't wait — <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;">call us today</a>. Every day matters.
 </div>
 
 <!-- NAV -->
 <nav>
   <div class="logo">MACH <span>Audit Defence</span></div>
-  <a href="tel:+19055107002" class="cta-nav">📞 <span class="nav-cta-full">Call Now — Free Consultation</span><span class="nav-cta-short">Call Now</span></a>
+  <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;" class="cta-nav">📞 <span class="nav-cta-full">Call Now — Free Consultation</span><span class="nav-cta-short">Call Now</span></a>
 </nav>
 
 <!-- HERO -->
@@ -581,8 +581,8 @@
         We are not a general accounting firm. We are <strong>dedicated CRA audit professionals</strong> — built specifically to protect individuals and businesses under CRA review, reassessment, or collection action.
       </p>
       <div class="cta-group">
-        <a href="tel:+19055107002" class="btn-primary">📞 Call Us Now</a>
-        <a href="/cdn-cgi/l/email-protection#85e4e1e8ecebc5e8e4e6ede4e6e6eaf0ebf1ecebe2abe6eae8" class="btn-secondary">Email Us Directly →</a>
+        <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;" class="btn-primary">📞 Call Us Now</a>
+        <a href="mailto:admin@machaccounting.com" onclick="gtag_report_conversion(this.href); return false;" class="btn-secondary">Email Us Directly →</a>
       </div>
       <div class="trust-row">
         <div class="trust-item">
@@ -651,7 +651,7 @@
       <h2>A CRA Audit Is Not a Routine Letter. Treat It That Way.</h2>
       <p>Most people underestimate CRA correspondence — until it becomes a reassessment, a frozen account, or a court date. <strong>Time limits are hard and unforgiving.</strong></p>
       <p>Anything you say to the CRA before engaging a professional can — and will — be used against you. The CRA's job is to collect. Our job is to protect you.</p>
-      <a href="tel:+19055107002" class="btn-primary" style="margin-top:12px; display:inline-block;">Get Protected Now</a>
+      <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;" class="btn-primary" style="margin-top:12px; display:inline-block;">Get Protected Now</a>
     </div>
     <div>
       <div class="warning-box">
@@ -744,15 +744,15 @@
   <h2>The CRA Already Has a Team Working Against You. <em>Now You Need One Too.</em></h2>
   <p>Your consultation is free. There's no obligation. And the sooner we get involved, the more options you have.</p>
   <div class="contact-options">
-    <a href="tel:+19055107002" class="contact-card">
+    <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;" class="contact-card">
       <div class="contact-card-icon">📞</div>
       <div class="contact-card-label">Call Directly</div>
       <div class="contact-card-value">(905) 510-7002</div>
     </a>
-    <a href="/cdn-cgi/l/email-protection#f190959c989fb19c9092999092929e849f85989f96df929e9c" class="contact-card">
+    <a href="mailto:admin@machaccounting.com" onclick="gtag_report_conversion(this.href); return false;" class="contact-card">
       <div class="contact-card-icon">✉️</div>
       <div class="contact-card-label">Email Us</div>
-      <div class="contact-card-value"><span class="__cf_email__" data-cfemail="ee8f8a838780ae838f8d868f8d8d819b809a878089c08d8183">[email&#160;protected]</span></div>
+      <div class="contact-card-value">admin@machaccounting.com</div>
     </a>
     <a href="https://calendly.com/machaccounting" target="_blank" class="contact-card">
       <div class="contact-card-icon">📅</div>
@@ -767,7 +767,7 @@
 <footer>
   <div class="logo">MACH <span>Audit Defence</span></div>
   <p>Serving clients across British Columbia, Ontario & all of Canada.</p>
-  <p><a href="/cdn-cgi/l/email-protection#bfdedbd2d6d1ffd2dedcd7dedcdcd0cad1cbd6d1d891dcd0d2"><span class="__cf_email__" data-cfemail="bfdedbd2d6d1ffd2dedcd7dedcdcd0cad1cbd6d1d891dcd0d2">[email&#160;protected]</span></a> &nbsp;|&nbsp; <a href="tel:+19055107002">(905) 510-7002</a></p>
+  <p><a href="mailto:admin@machaccounting.com" onclick="gtag_report_conversion(this.href); return false;">admin@machaccounting.com</a> &nbsp;|&nbsp; <a href="tel:+19055107002" onclick="gtag_report_conversion(this.href); return false;">(905) 510-7002</a></p>
 </footer>
 
 <!-- STICKY CTA -->
@@ -787,4 +787,43 @@
     btn.disabled = true;
 
     const data = new FormData(form);
-    cons
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+    const json = await res.json();
+    if (json.success) {
+      gtag_report_conversion();
+      form.style.display = 'none';
+      successDiv.style.display = 'block';
+    } else {
+      btn.textContent = 'Request Free Consultation →';
+      btn.disabled = false;
+      alert('Something went wrong. Please call us directly or try again.');
+    }
+  });
+
+  // Hide sticky button when form is in view
+  const formCard = document.querySelector('.hero-form-card');
+  const stickyCta = document.querySelector('.sticky-cta');
+  const observer = new IntersectionObserver(entries => {
+    stickyCta.style.opacity = entries[0].isIntersecting ? '0' : '1';
+    stickyCta.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'auto';
+  }, { threshold: 0.5 });
+  observer.observe(formCard);
+</script>
+
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+    'send_to': 'AW-17873651816/rV8RCNPj7f8bEOiQ6cpC',
+    'event_callback': callback
+  });
+  return false;
+}
+</script>
+
+</body>
+</html>
