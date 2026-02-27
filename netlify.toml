@@ -1,11 +1,11 @@
 [[redirects]]
   from = "https://estate.machaccounting.com/*"
-  to = "/estate.html"
+  to = "https://cra.machaccounting.com/estate.html"
   status = 200
   force = true
 
 [[redirects]]
   from = "https://foreign.machaccounting.com/*"
-  to = "/foreign.html"
+  to = "https://cra.machaccounting.com/foreign.html"
   status = 200
   force = true
